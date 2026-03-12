@@ -25,7 +25,7 @@ const getUser = async (req, res, next) => {
         const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY,);
         res.cookie("access_token", token, {
             httpOnly: true,
-            secure: false,
+            secure: true,
             sameSite: "lax",
         })
         res.status(201).json({
