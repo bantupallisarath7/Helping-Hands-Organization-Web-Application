@@ -26,7 +26,7 @@ const AdminMenu = ({ setAdminView, activeView, setSelectedUserId }) => {
     try {
       dispatch(signOutStart());
 
-      const res = await axios.get(
+      const res = await axios.post(
         "https://api-hho.onrender.com/auth/signout",
         { withCredentials: true }
       );
