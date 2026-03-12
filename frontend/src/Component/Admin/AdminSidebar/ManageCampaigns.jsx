@@ -17,7 +17,7 @@ const ManageCampaigns = ({ setAdminView, setFormMode, setEditCampaign }) => {
 
   const fetchAllCampaigns = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/admin/campaign/all", { withCredentials: true });
+      const res = await axios.get("https://api-hho.onrender.com/admin/campaign/all", { withCredentials: true });
       if (res.data.status === false) {
         toast.error(res.data.message)
       }

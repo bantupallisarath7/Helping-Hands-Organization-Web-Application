@@ -8,7 +8,7 @@ const ManageUsers = ({ setAdminView, setSelectedUserId }) => {
 
   const fetchAllUser = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/admin/user/all", { withCredentials: true });
+      const res = await axios.get("https://api-hho.onrender.com/admin/user/all", { withCredentials: true });
       if (res.data.success === false) {
         toast.error(res.data.message);
         return
@@ -26,7 +26,7 @@ const ManageUsers = ({ setAdminView, setSelectedUserId }) => {
 
   const toggleStatus = async (userId, newStatus) => {
     try {
-      const res = await axios.put(`http://localhost:8815/auth/update/isactive/${userId}`, { isActive: newStatus }, { withCredentials: true });
+      const res = await axios.put(`https://api-hho.onrender.com/auth/update/isactive/${userId}`, { isActive: newStatus }, { withCredentials: true });
       if (res.data.success === false) {
         toast.error(res.data.message);
         return
@@ -41,7 +41,7 @@ const ManageUsers = ({ setAdminView, setSelectedUserId }) => {
 
   const deleteUser = async (userId) => {
     try {
-      const res = await axios.delete(`http://localhost:8815/auth/delete/${userId}`, { withCredentials: true });
+      const res = await axios.delete(`https://api-hho.onrender.com/auth/delete/${userId}`, { withCredentials: true });
       if (res.data.success === false) {
         toast.error(res.data.message);
         return

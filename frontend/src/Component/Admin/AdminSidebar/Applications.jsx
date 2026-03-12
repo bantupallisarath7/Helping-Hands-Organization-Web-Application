@@ -8,7 +8,7 @@ const Applications = ({ setAdminView, setFormMode, setEditCampaign }) => {
   const [loading, setLoading] = useState(true);
   const fetchPendingCampaigns = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/admin/campaign/all", { withCredentials: true });
+      const res = await axios.get("https://api-hho.onrender.com/admin/campaign/all", { withCredentials: true });
       if (res.data.status === false) {
         toast.error(res.data.message)
       }

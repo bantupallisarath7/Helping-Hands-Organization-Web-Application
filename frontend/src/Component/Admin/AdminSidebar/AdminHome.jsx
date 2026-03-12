@@ -14,7 +14,7 @@ const AdminHome = ({ setAdminView }) => {
 
   const fetchCollectedAmount = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/receipt/all/collectedamount", { withCredentials: true });
+      const res = await axios.get("https://api-hho.onrender.com/receipt/all/collectedamount", { withCredentials: true });
       if (res.data.success === false) {
         toast.error(res.data.message);
         return
@@ -27,7 +27,7 @@ const AdminHome = ({ setAdminView }) => {
 
   const fetchCampaigns = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/admin/campaign/all", { withCredentials: true });
+      const res = await axios.get("https://api-hho.onrender.com/admin/campaign/all", { withCredentials: true });
       if (res.data.status === false) {
         toast.error(res.data.message)
       }
@@ -43,7 +43,7 @@ const AdminHome = ({ setAdminView }) => {
 
   const fetchPendingReceipts = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/admin/receipt/all", { withCredentials: true });
+      const res = await axios.get("https://api-hho.onrender.com/admin/receipt/all", { withCredentials: true });
       if (res.data.status === false) {
         toast.error(res.data.message)
       }

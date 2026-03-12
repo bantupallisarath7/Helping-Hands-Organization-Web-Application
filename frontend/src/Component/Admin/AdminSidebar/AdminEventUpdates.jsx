@@ -17,7 +17,7 @@ const AdminEventUpdates = ({ setAdminView, setFormMode, setEditEvent }) => {
 
   const fetchAllEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/admin/event/all", { withCredentials: true });
+      const res = await axios.get("https://api-hho.onrender.com/admin/event/all", { withCredentials: true });
       if (res.data.status === false) {
         return toast.error(res.data.message)
       }
@@ -38,7 +38,7 @@ const AdminEventUpdates = ({ setAdminView, setFormMode, setEditEvent }) => {
   }
   const updateEventStatus = async () => {
     try {
-      const res = await axios.put("http://localhost:8815/admin/event/autoupdate/all", {}, { withCredentials: true });
+      const res = await axios.put("https://api-hho.onrender.com/admin/event/autoupdate/all", {}, { withCredentials: true });
       if (res.data.status === false) {
         return toast.error(res.data.message)
       }
