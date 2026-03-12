@@ -97,9 +97,9 @@ return (
 
     {/* Image Grid */}
     {loading ? (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-red-700"></div>
-      </div>
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-10 w-10 border-4 border-red-200 border-t-red-700"></div>
+          </div>
     ) : images.length === 0 ? (
       <div className="flex flex-col items-center justify-center text-center py-16 px-4">
         <div className="text-6xl mb-4">🖼️</div>

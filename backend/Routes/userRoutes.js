@@ -16,7 +16,7 @@ const router = express.Router();
 router.post("/signup", createUser);
 router.post("/signin", getUser);
 router.put("/update/profile", verifyToken, updateUser);
-router.get("/signout",verifyToken, signOut);
+router.get("/signout", signOut);
 router.get("/get/:userId", getUserById);
 router.delete("/delete/:userId", verifyToken, deleteUser);
 router.put("/update/isactive/:userId", verifyToken, updateUserIsActive);
