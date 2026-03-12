@@ -12,7 +12,7 @@ import feedbackRoutes from "./Routes/feedbackRoutes.js"
 
 const app = express();
 app.use(cors({
-    origin: "https://helping-hands-organization-web-application-4vkunzfpr.vercel.app",
+    origin: "https://helping-hands-organization-web-appl.vercel.app",
     credentials: true
 }));
 app.use(express.json());
