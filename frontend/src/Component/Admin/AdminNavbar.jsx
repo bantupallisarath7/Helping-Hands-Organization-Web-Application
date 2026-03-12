@@ -10,7 +10,7 @@ const AdminNavbar = ({ setAdminView, toggleSidebar, refreshProfile, setRefreshPr
   const [userData, setUserData] = useState(null);
   const getUserInfo = async () => {
     try {
-      const res = await axios.get(`http://localhost:8815/auth/get/${currentUser.userId}`, {
+      const res = await axios.get(`https://api-hho.onrender.com/auth/get/${currentUser.userId}`, {
         withCredentials: true
       });
       if (res.data.success === false) {

@@ -9,7 +9,7 @@ const Campaigns = ({ setView, setFormMode, setEditReceipt }) => {
 
   const getApprovedCampaigns = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/campaign/approved/all", {
+      const res = await axios.get("https://api-hho.onrender.com/campaign/approved/all", {
         withCredentials: true,
       });
       if (res.data.success === false) {

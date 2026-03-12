@@ -41,7 +41,7 @@ const EventForm = ({ event, type, setAdminView }) => {
   const onEditEvent = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:8815/admin/event/update/${event._id}`,
+        `https://api-hho.onrender.com/admin/event/update/${event._id}`,
         { ...formData },
         { withCredentials: true }
       );
@@ -57,7 +57,7 @@ const EventForm = ({ event, type, setAdminView }) => {
   const onCreateEvent = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:8815/admin/event/add",
+        "https://api-hho.onrender.com/admin/event/add",
         { ...formData },
         { withCredentials: true }
       );

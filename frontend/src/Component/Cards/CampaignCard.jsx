@@ -47,7 +47,7 @@ const CampaignCard = ({ campaign, setDashboardView, setFormMode, setEditCampaign
   }
   const onDelete = async () => {
     try {
-      const res = await axios.delete(`http://localhost:8815/campaign/delete/${campaign._id}`, { withCredentials: true });
+      const res = await axios.delete(`https://api-hho.onrender.com/campaign/delete/${campaign._id}`, { withCredentials: true });
       if (res.data.success === false) {
         toast.error(res.data.message);
         return
@@ -64,7 +64,7 @@ const CampaignCard = ({ campaign, setDashboardView, setFormMode, setEditCampaign
   const onApprove = async () => {
 
     try {
-      const res = await axios.put(`http://localhost:8815/campaign/update/status/${campaign._id}`, { status: "approved" }, { withCredentials: true })
+      const res = await axios.put(`https://api-hho.onrender.com/campaign/update/status/${campaign._id}`, { status: "approved" }, { withCredentials: true })
       if (res.data.success === false) {
         toast.error(res.data.message);
         return
@@ -79,7 +79,7 @@ const CampaignCard = ({ campaign, setDashboardView, setFormMode, setEditCampaign
 
   const onReject = async () => {
     try {
-      const res = await axios.put(`http://localhost:8815/campaign/update/status/${campaign._id}`, { status: "rejected" }, { withCredentials: true })
+      const res = await axios.put(`https://api-hho.onrender.com/campaign/update/status/${campaign._id}`, { status: "rejected" }, { withCredentials: true })
       if (res.data.success === false) {
         toast.error(res.data.message);
         return
@@ -93,7 +93,7 @@ const CampaignCard = ({ campaign, setDashboardView, setFormMode, setEditCampaign
   }
   const onFunded = async () => {
     try {
-      const res = await axios.put(`http://localhost:8815/campaign/update/status/${campaign._id}`, { status: "funded" }, { withCredentials: true })
+      const res = await axios.put(`https://api-hho.onrender.com/campaign/update/status/${campaign._id}`, { status: "funded" }, { withCredentials: true })
       if (res.data.success === false) {
         toast.error(res.data.message);
         return
@@ -107,7 +107,7 @@ const CampaignCard = ({ campaign, setDashboardView, setFormMode, setEditCampaign
   }
   const onEmergency = async () => {
     try {
-      const res = await axios.put(`http://localhost:8815/campaign/update/emergency/status/${campaign._id}`, { isEmergency: !campaign.isEmergency }, { withCredentials: true })
+      const res = await axios.put(`https://api-hho.onrender.com/campaign/update/emergency/status/${campaign._id}`, { isEmergency: !campaign.isEmergency }, { withCredentials: true })
       if (res.data.success === false) {
         toast.error(res.data.message);
         return

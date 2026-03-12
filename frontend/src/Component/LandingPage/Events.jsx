@@ -14,7 +14,7 @@ const Events = () => {
 
   const fetchAllEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/admin/event/all", {
+      const res = await axios.get("https://api-hho.onrender.com/admin/event/all", {
         withCredentials: true,
       });
       if (res.data.success === false) {
@@ -37,7 +37,7 @@ const Events = () => {
   const updateEventStatus = async () => {
     try {
       const res = await axios.put(
-        "http://localhost:8815/admin/event/autoupdate/all",
+        "https://api-hho.onrender.com/admin/event/autoupdate/all",
         {},
         { withCredentials: true }
       );

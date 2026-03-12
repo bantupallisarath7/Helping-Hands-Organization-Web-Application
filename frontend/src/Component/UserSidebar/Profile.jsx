@@ -17,7 +17,7 @@ const Profile = ({ userId, role, setRefreshProfile }) => {
 
   const getUserInfo = async () => {
     try {
-      const res = await axios.get(`http://localhost:8815/auth/get/${userIdToLoad}`, {
+      const res = await axios.get(`https://api-hho.onrender.com/auth/get/${userIdToLoad}`, {
         withCredentials: true
       });
       if (res.data.success === false) {

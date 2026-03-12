@@ -23,7 +23,7 @@ const FeedbackForm = ({ refreshFeedbacks }) => {
     const createFeedback = async () => {
         try {
             setLoading(true);
-            const res = await axios.post("http://localhost:8815/feedback/add",
+            const res = await axios.post("https://api-hho.onrender.com/feedback/add",
                 {
                     description: formData.description,
                     reviewer: formData.reviewer

@@ -9,7 +9,7 @@ const ProfileInfo = ({ userInfo }) => {
       {/* Profile Image / Initials */}
       {hasPhoto ? (
         <img
-          src={`http://localhost:8815${userInfo.profilePhotoUrl}`}
+          src={`https://api-hho.onrender.com${userInfo.profilePhotoUrl}`}
           alt={userInfo.fullName}
           className="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover"
         />

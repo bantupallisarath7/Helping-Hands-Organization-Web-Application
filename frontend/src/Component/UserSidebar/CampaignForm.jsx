@@ -82,7 +82,7 @@ const CampaignForm = ({ campaign, type, setView }) => {
   const onEditCampaign = async () => {
     try {
       setLoading(true);
-      const res = await axios.put(`http://localhost:8815/campaign/update/${campaign._id}`, { ...formField }, { withCredentials: true });
+      const res = await axios.put(`https://api-hho.onrender.com/campaign/update/${campaign._id}`, { ...formField }, { withCredentials: true });
       if (res.data.success === false) {
         toast.error(res.data.message);
         return
@@ -100,7 +100,7 @@ const CampaignForm = ({ campaign, type, setView }) => {
   const onCreateCampaign = async () => {
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:8815/campaign/add", { ...formField }, { withCredentials: true })
+      const res = await axios.post("https://api-hho.onrender.com/campaign/add", { ...formField }, { withCredentials: true })
       if (res.data.success === false) {
         toast.error(res.data.message);
         return

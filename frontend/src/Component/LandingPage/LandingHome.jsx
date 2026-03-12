@@ -18,7 +18,7 @@ const LandingHome = ({ setView }) => {
   const isAdmin = currentUser?.role === "admin";
   const getAllFeedbacks = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/feedback/all");
+      const res = await axios.get("https://api-hho.onrender.com/feedback/all");
       if (res.data.success === false) {
         return toast.error(res.data.message);
       }
@@ -30,7 +30,7 @@ const LandingHome = ({ setView }) => {
   }
   const deleteFeedback = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:8815/feedback/delete/${id}`, { withCredentials: true });
+      const res = await axios.delete(`https://api-hho.onrender.com/feedback/delete/${id}`, { withCredentials: true });
       if (res.data.success === false) {
         return toast.error(res.data.message);
       }

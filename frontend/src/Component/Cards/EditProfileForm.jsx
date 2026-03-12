@@ -27,7 +27,7 @@ const EditProfileForm = ({ userData, onClose, onUpdate, isAdmin }) => {
     try {
       setLoading(true);
       const res = await axios.put(
-        "http://localhost:8815/auth/update/profile",
+        "https://api-hho.onrender.com/auth/update/profile",
         {
           userId: userData._id,
           ...formData

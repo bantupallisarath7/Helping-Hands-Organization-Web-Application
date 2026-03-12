@@ -16,7 +16,7 @@ const DonationReceipts = ({ setView, setFormMode, setEditReceipt }) => {
 
   const fetchReceipts = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/receipt/all", { withCredentials: true })
+      const res = await axios.get("https://api-hho.onrender.com/receipt/all", { withCredentials: true })
       if (res.data.success === false) {
         toast.error(res.data.message)
         return;

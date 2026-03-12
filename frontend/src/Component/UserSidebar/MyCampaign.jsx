@@ -18,7 +18,7 @@ const MyCampaign = ({ setView, setFormMode, setEditCampaign }) => {
 
   const fetchCampaigns = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/campaign/all", { withCredentials: true })
+      const res = await axios.get("https://api-hho.onrender.com/campaign/all", { withCredentials: true })
       if (res.data.success === false) {
         toast.error(res.data.message);
         return;

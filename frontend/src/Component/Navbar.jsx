@@ -23,7 +23,7 @@ const Navbar = ({
   const getUserInfo = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8815/auth/get/${currentUser.userId}`,
+        `https://api-hho.onrender.com/auth/get/${currentUser.userId}`,
         { withCredentials: true }
       );
 

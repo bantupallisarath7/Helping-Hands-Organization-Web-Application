@@ -55,7 +55,7 @@ const DonationFormModal = ({ receipt, type, setView }) => {
 
   const onEditReceipt = async () => {
     try {
-      const res = await axios.put(`http://localhost:8815/receipt/update/${receipt._id}`, { ...formData }, { withCredentials: true });
+      const res = await axios.put(`https://api-hho.onrender.com/receipt/update/${receipt._id}`, { ...formData }, { withCredentials: true });
       if (res.data.success === false) {
         toast.error(res.data.message);
         return
@@ -70,7 +70,7 @@ const DonationFormModal = ({ receipt, type, setView }) => {
 
   const onCreateReceipt = async () => {
     try {
-      const res = await axios.post("http://localhost:8815/receipt/add", { ...formData, createdForCampaign: receipt.createdForCampaign }, { withCredentials: true })
+      const res = await axios.post("https://api-hho.onrender.com/receipt/add", { ...formData, createdForCampaign: receipt.createdForCampaign }, { withCredentials: true })
       if (res.data.success === false) {
         toast.error(res.data.message);
         return

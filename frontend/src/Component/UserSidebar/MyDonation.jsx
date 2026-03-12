@@ -12,7 +12,7 @@ const MyDonations = () => {
 
     const fetchDonations = async () => {
         try {
-            const res = await axios.get("http://localhost:8815/receipt/all", { withCredentials: true });
+            const res = await axios.get("https://api-hho.onrender.com/receipt/all", { withCredentials: true });
             if (res.data.success === false) {
                 toast.error(res.data.message);
                 return
@@ -27,7 +27,7 @@ const MyDonations = () => {
     }
     const fetchDonationAmount = async () => {
         try {
-            const res = await axios.get("http://localhost:8815/receipt/all/donatedamount", { withCredentials: true });
+            const res = await axios.get("https://api-hho.onrender.com/receipt/all/donatedamount", { withCredentials: true });
             if (res.data.success === false) {
                 toast.error(res.data.message);
                 return

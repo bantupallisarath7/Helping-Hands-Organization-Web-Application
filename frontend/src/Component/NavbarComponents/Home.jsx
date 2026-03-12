@@ -16,7 +16,7 @@ const Home = ({ setView }) => {
 
   const fetchApprovedCampaigns = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/campaign/all", { withCredentials: true });
+      const res = await axios.get("https://api-hho.onrender.com/campaign/all", { withCredentials: true });
       if (res.data.success === false) {
         return toast.error(res.data.message)
       }
@@ -29,7 +29,7 @@ const Home = ({ setView }) => {
 
   const fetchPendingDonations = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/receipt/all", { withCredentials: true })
+      const res = await axios.get("https://api-hho.onrender.com/receipt/all", { withCredentials: true })
       if (res.data.success === false) {
         return toast.error(res.data.message)
       }
@@ -42,7 +42,7 @@ const Home = ({ setView }) => {
 
   const fetchDonatedAmount = async () => {
     try {
-      const res = await axios.get("http://localhost:8815/receipt/all/donatedamount", { withCredentials: true });
+      const res = await axios.get("https://api-hho.onrender.com/receipt/all/donatedamount", { withCredentials: true });
       if (res.data.success === false) {
         toast.error(res.data.message);
         return

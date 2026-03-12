@@ -18,7 +18,7 @@ const ProfilePhoto = ({ url, refreshProfile, setRefreshProfile, userId }) => {
     formData.append("photo", file);
 
     try {
-      const res = await axios.post(`http://localhost:8815/auth/upload/profile-photo/${userId}`, formData, {
+      const res = await axios.post(`https://api-hho.onrender.com/auth/upload/profile-photo/${userId}`, formData, {
         withCredentials: true
       });
 
@@ -36,7 +36,7 @@ const ProfilePhoto = ({ url, refreshProfile, setRefreshProfile, userId }) => {
 
   const handleDelete = async () => {
     try {
-      const res = await axios.delete(`http://localhost:8815/auth/delete/profile-photo/${userId}`, { withCredentials: true })
+      const res = await axios.delete(`https://api-hho.onrender.com/auth/delete/profile-photo/${userId}`, { withCredentials: true })
       if (res.data.success === false) {
         return toast.error(res.data.message)
       }
@@ -54,7 +54,7 @@ const ProfilePhoto = ({ url, refreshProfile, setRefreshProfile, userId }) => {
       <div className="w-full h-full rounded-full bg-white border-2 border-red-900 flex items-center justify-center overflow-hidden">
         {url ? (
           <img
-            src={`http://localhost:8815${url}`}
+            src={`https://api-hho.onrender.com${url}`}
             alt="Profile"
             className="w-full h-full object-cover rounded-full"
           />

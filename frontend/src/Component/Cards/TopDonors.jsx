@@ -9,7 +9,7 @@ const TopDonors = () => {
   useEffect(() => {
     const fetchTopDonors = async () => {
       try {
-        const res = await axios.get("http://localhost:8815/admin/top-donors", {
+        const res = await axios.get("https://api-hho.onrender.com/admin/top-donors", {
           withCredentials: true,
         });
         if (res.data.success === false) {

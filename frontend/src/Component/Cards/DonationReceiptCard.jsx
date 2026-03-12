@@ -38,7 +38,7 @@ const DonationReceiptCard = ({ receipt, setDashboardView, setFormMode, setEditRe
   }
   const onDelete = async () => {
     try {
-      const res = await axios.delete(`http://localhost:8815/receipt/delete/${receipt._id}`, { withCredentials: true });
+      const res = await axios.delete(`https://api-hho.onrender.com/receipt/delete/${receipt._id}`, { withCredentials: true });
       if (res.data.success === false) {
         toast.error(res.data.message);
         return
@@ -53,7 +53,7 @@ const DonationReceiptCard = ({ receipt, setDashboardView, setFormMode, setEditRe
 
   const onApprove = async () => {
     try {
-      const res = await axios.put(`http://localhost:8815/receipt/update/status/${receipt._id}`, { status: "approved" }, { withCredentials: true })
+      const res = await axios.put(`https://api-hho.onrender.com/receipt/update/status/${receipt._id}`, { status: "approved" }, { withCredentials: true })
 
       if (res.data.success === false) {
         toast.error(res.data.message);
@@ -68,7 +68,7 @@ const DonationReceiptCard = ({ receipt, setDashboardView, setFormMode, setEditRe
   };
   const onReject = async () => {
     try {
-      const res = await axios.put(`http://localhost:8815/receipt/update/status/${receipt._id}`, { status: "rejected" }, { withCredentials: true })
+      const res = await axios.put(`https://api-hho.onrender.com/receipt/update/status/${receipt._id}`, { status: "rejected" }, { withCredentials: true })
       refreshReceipts()
       if (res.data.success === false) {
         toast.error(res.data.message);

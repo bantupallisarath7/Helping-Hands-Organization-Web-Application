@@ -39,7 +39,7 @@ const EventCard = ({ event, setDashboardView, setFormMode, setEditEvent, refresh
 
   const onDelete = async () => {
     try {
-      const res = await axios.delete(`http://localhost:8815/admin/event/delete/${event._id}`, {
+      const res = await axios.delete(`https://api-hho.onrender.com/admin/event/delete/${event._id}`, {
         withCredentials: true,
       });
       if (res.data.success === false) {
@@ -56,7 +56,7 @@ const EventCard = ({ event, setDashboardView, setFormMode, setEditEvent, refresh
 
   const onCancelEvent = async () => {
     try {
-      const res = await axios.put(`http://localhost:8815/admin/event/update/status/${event._id}`, { status: "cancelled" }, {
+      const res = await axios.put(`https://api-hho.onrender.com/admin/event/update/status/${event._id}`, { status: "cancelled" }, {
         withCredentials: true,
       });
       if (res.data.success === false) {

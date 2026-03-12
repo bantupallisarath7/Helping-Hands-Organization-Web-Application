@@ -11,7 +11,7 @@ const Gallery = ({ isAdmin }) => {
   const fetchImages = async () => {
     try {
 
-      const res = await axios.get("http://localhost:8815/admin/gallery/all");
+      const res = await axios.get("https://api-hho.onrender.com/admin/gallery/all");
       if (res.data.success === false) {
         return toast.error(res.data.message)
       }
@@ -47,7 +47,7 @@ const Gallery = ({ isAdmin }) => {
 
   const handleDelete = async (index, id) => {
     try {
-      const res = await axios.delete(`http://localhost:8815/admin/gallery/delete/${id}`, { withCredentials: true });
+      const res = await axios.delete(`https://api-hho.onrender.com/admin/gallery/delete/${id}`, { withCredentials: true });
       if (res.data.success === false) {
         return toast.error(res.data.message);
       }
@@ -69,7 +69,7 @@ const Gallery = ({ isAdmin }) => {
     formData.append("image", file);
 
     try {
-      const res = await axios.post("http://localhost:8815/admin/gallery/upload", formData, { withCredentials: true });
+      const res = await axios.post("https://api-hho.onrender.com/admin/gallery/upload", formData, { withCredentials: true });
       if (res.data.success === false) {
         return toast.error(res.data.message);
       }

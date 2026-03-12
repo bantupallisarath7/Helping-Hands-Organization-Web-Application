@@ -11,7 +11,7 @@ const DocumentUpload = ({ campaignId, formField, setFormField }) => {
     selectedFiles.forEach((file) => formData.append("documents", file));
 
     try {
-      const res = await axios.post(`http://localhost:8815/campaign/${campaignId}/upload-documents`, formData, {
+      const res = await axios.post(`https://api-hho.onrender.com/campaign/${campaignId}/upload-documents`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -35,7 +35,7 @@ const DocumentUpload = ({ campaignId, formField, setFormField }) => {
     const fileToDelete = formField.document[indexToRemove];
 
     try {
-      const res = await axios.delete("http://localhost:8815/campaign/delete-document", {
+      const res = await axios.delete("https://api-hho.onrender.com/campaign/delete-document", {
         data: {
           campaignId,
           docUrl: fileToDelete.url,

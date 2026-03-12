@@ -39,7 +39,7 @@ const Signup = ({ setView }) => {
       // Simulate signup success
       setLoading(true)
       try {
-        const res = await axios.post("http://localhost:8815/auth/signup",
+        const res = await axios.post("https://api-hho.onrender.com/auth/signup",
           {
             fullName: formFields.username,
             email: formFields.email,
