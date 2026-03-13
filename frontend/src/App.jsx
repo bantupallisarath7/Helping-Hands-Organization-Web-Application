@@ -66,28 +66,39 @@ const App = () => {
         return <LandingHome setView={setView} />;
     }
   };
-  return (
-    <>
-      {loading && <Loader />}
-      {!loading && (
-        <div className="flex flex-col min-h-screen">
-          {isLoggedIn ? (
-            currentUser.role === "admin" ? (
-              <AdminDashboard />
-            ) : (
-              <Dashboard />
-            )
+return (
+  <>
+    {loading && <Loader />}
+    {!loading && (
+      <div className="flex flex-col min-h-screen">
+        {isLoggedIn ? (
+          currentUser.role === "admin" ? (
+            <AdminDashboard />
           ) : (
-            <>
-              <PublicNavbar setView={setView} activeView={view} />
-              <main className="pt-20 px-6">{renderView()}</main>
-            </>
-          )}
-          <ToastContainer position="top-center" autoClose={2000} hideProgressBar={false} />
-        </div>
-      )}
-    </>
-  );
+            <Dashboard />
+          )
+        ) : (
+          <>
+            {/* Navbar */}
+            <PublicNavbar setView={setView} activeView={view} />
+
+            {/* Main content fills remaining space */}
+            <main className="flex-1 flex items-center justify-center px-6 pt-20">
+              {renderView()}
+            </main>
+          </>
+        )}
+
+        {/* Toast notifications */}
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+        />
+      </div>
+    )}
+  </>
+);
 };
 
 export default App;

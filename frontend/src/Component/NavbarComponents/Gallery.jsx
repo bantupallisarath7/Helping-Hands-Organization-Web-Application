@@ -82,85 +82,116 @@ const Gallery = ({ isAdmin }) => {
   };
 
 return (
-  <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6 lg:px-8">
+  <div className="flex-1 overflow-y-auto bg-gray-50">
 
-    {/* Heading Section */}
-    <div className="max-w-7xl mx-auto mb-6 w-full">
-      <h2 className="text-lg sm:text-xl font-bold text-red-900 text-center sm:text-left">
-        Our Gallery
-      </h2>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
 
-      <p className="text-gray-500 text-sm sm:text-base text-center sm:text-left mt-1">
-        Explore moments from our events, campaigns, and community activities.
-      </p>
-    </div>
+      {/* Heading */}
+      <div className="text-center sm:text-left">
 
-    {/* Image Grid */}
-    {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-10 w-10 border-4 border-red-200 border-t-red-700"></div>
-          </div>
-    ) : images.length === 0 ? (
-      <div className="flex flex-col items-center justify-center text-center py-16 px-4">
-        <div className="text-6xl mb-4">🖼️</div>
+        <h2 className="text-xl sm:text-2xl font-bold text-red-900">
+          Our Gallery
+        </h2>
 
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-2">
-          No images in the gallery
-        </h3>
-
-        <p className="text-sm sm:text-base text-gray-500 max-w-md">
-          Images will appear here once the admin uploads them. Please check back later.
+        <p className="text-gray-500 text-sm sm:text-base mt-1 max-w-2xl">
+          Explore moments from our events, campaigns, and community activities.
         </p>
 
-        <button
-          onClick={() => {
-            setLoading(true);
-            fetchImages();
-          }}
-          className="mt-6 px-5 py-2.5 bg-red-900 text-white rounded-lg hover:bg-red-700 transition shadow"
-        >
-          Refresh Gallery
-        </button>
       </div>
-    ) : (
-      <div className="max-w-7xl mx-auto">
-        <div
-          className="
-          grid gap-4
-          grid-cols-2
-          sm:grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-4
-        "
-        >
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className="relative group overflow-hidden rounded-lg shadow-sm hover:shadow-lg transition"
+
+
+      {/* Gallery Section */}
+      <div className="min-h-[60vh] flex flex-col">
+
+        {loading ? (
+
+          <div className="flex flex-1 flex-col items-center justify-center">
+
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-red-900"></div>
+
+            <p className="text-gray-500 text-sm mt-4">
+              Loading images...
+            </p>
+
+          </div>
+
+        ) : images.length === 0 ? (
+
+          /* Empty State */
+          <div className="flex flex-1 flex-col items-center justify-center text-center">
+
+            <div className="text-6xl mb-4">🖼️</div>
+
+            <h3 className="text-xl sm:text-2xl font-semibold text-red-900 mb-2">
+              No images in the gallery
+            </h3>
+
+            <p className="text-gray-500 max-w-md text-sm sm:text-base">
+              Images will appear here once the admin uploads them.
+              Please check back later.
+            </p>
+
+            <button
+              onClick={() => {
+                setLoading(true);
+                fetchImages();
+              }}
+              className="mt-6 px-6 py-2.5 bg-red-900 text-white rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
             >
-              <img
-                src={`https://api-hho.onrender.com${image.imageUrl}`}
-                alt={`Gallery ${index + 1}`}
-                className="w-full h-40 sm:h-44 md:h-48 object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
-                onClick={() => setSelectedIndex(index)}
-              />
+              Refresh Gallery
+            </button>
 
-              {/* Delete Button (Admin Only) */}
-              {isAdmin && (
-                <button
-                  onClick={() => handleDelete(index, image._id)}
-                  className="absolute top-2 right-2 bg-white text-red-700 p-1.5 rounded-full shadow opacity-0 group-hover:opacity-100 transition hover:bg-red-700 hover:text-white"
-                >
-                  <MdDelete className="text-lg" />
-                </button>
-              )}
-            </div>
-          ))}
-        </div>
+          </div>
+
+        ) : (
+
+          /* Image Grid */
+          <div
+            className="
+            grid gap-6
+            grid-cols-2
+            sm:grid-cols-2
+            md:grid-cols-3
+            lg:grid-cols-4
+            items-start
+          "
+          >
+
+            {images.map((image, index) => (
+              <div
+                key={index}
+                className="relative group overflow-hidden rounded-xl bg-white shadow-sm hover:shadow-md transition"
+              >
+
+                <img
+                  src={`https://api-hho.onrender.com${image.imageUrl}`}
+                  alt={`Gallery ${index + 1}`}
+                  className="w-full h-40 sm:h-44 md:h-48 object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
+                  onClick={() => setSelectedIndex(index)}
+                />
+
+                {isAdmin && (
+                  <button
+                    onClick={() => handleDelete(index, image._id)}
+                    className="absolute top-2 right-2 bg-white text-red-700 p-2 rounded-full shadow opacity-0 group-hover:opacity-100 transition hover:bg-red-700 hover:text-white"
+                  >
+                    <MdDelete className="text-lg" />
+                  </button>
+                )}
+
+              </div>
+            ))}
+
+          </div>
+
+        )}
+
       </div>
-    )}
 
-    {/* Floating Upload Button (Admin Only) */}
+    </div>
+
+
+    {/* Floating Upload Button */}
     {isAdmin && (
       <>
         <input
@@ -174,21 +205,16 @@ return (
         <label
           htmlFor="imageUpload"
           className="
-          fixed
-          bottom-6
-          right-6
-          bg-red-900
-          text-white
-          px-5
-          py-3
+          fixed bottom-6 right-6
+          bg-red-900 text-white
+          px-5 py-3
           rounded-full
           shadow-lg
-          hover:bg-red-700
+          hover:bg-red-800
           transition
           cursor-pointer
           z-50
-          text-sm
-          font-medium
+          text-sm font-medium
         "
         >
           Upload Image
@@ -196,19 +222,23 @@ return (
       </>
     )}
 
+
     {/* Image Modal */}
     {selectedIndex !== null && (
       <div
-        className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+        className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
         onClick={() => setSelectedIndex(null)}
       >
+
         <img
           src={`https://api-hho.onrender.com${images[selectedIndex].imageUrl}`}
           alt={`Gallery ${selectedIndex + 1}`}
-          className="max-w-full max-h-[90vh] rounded-lg shadow-xl"
+          className="max-w-full max-h-[90vh] rounded-xl shadow-xl"
         />
+
       </div>
     )}
+
   </div>
 );
 };

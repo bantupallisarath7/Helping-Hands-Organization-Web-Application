@@ -46,14 +46,17 @@ const LandingHome = ({ setView }) => {
   }, [])
 return (
   <div className="flex flex-col min-h-screen bg-gray-50">
-    <main className="grow">
+
+    <main className="flex-1">
 
       {/* HERO SECTION */}
-      <section className="min-h-screen flex items-center justify-center bg-linear-to-b from-white to-red-50 px-6 text-center">
-        <div className="max-w-4xl mx-auto">
+      <section className="min-h-[80vh] flex items-center justify-center bg-linear-to-b from-white to-red-50">
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-900 leading-tight mb-6">
-            Small Contributions. <br className="hidden sm:block" />
+            Small Contributions.
+            <br className="hidden sm:block" />
             Big Impact on Student Lives.
           </h1>
 
@@ -71,7 +74,7 @@ return (
                   ? toast.info("Campaign creation is not allowed from the admin panel")
                   : toast.info("Please sign in to create a new campaign")
               }
-              className="bg-red-900 text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-red-800 transition"
+              className="bg-red-900 text-white px-8 py-3 rounded-lg font-semibold shadow-sm hover:bg-red-800 transition"
             >
               Start a Campaign
             </button>
@@ -88,44 +91,53 @@ return (
             </button>
 
           </div>
+
         </div>
       </section>
 
 
       {/* TOP DONORS */}
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 bg-white">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <TopDonors />
         </div>
+
       </section>
 
 
       {/* SUPPORT SECTION */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto text-center">
+      <section className="py-16 bg-gray-50">
 
-          <h2 className="text-3xl font-bold text-red-900 mb-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+          <h2 className="text-3xl font-bold text-red-900 mb-12">
             Support Us Directly
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+
             <BankDetails isAdmin={isAdmin} />
+
             <UpiSection isAdmin={isAdmin} />
+
           </div>
 
         </div>
+
       </section>
 
 
       {/* HOW IT WORKS */}
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="py-16 bg-white">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
           <h2 className="text-3xl font-bold text-red-900 mb-12">
             How It Works
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
             {[
               { title: "Start a Campaign", icon: "📢" },
@@ -138,26 +150,31 @@ return (
                 className="bg-red-50 p-8 rounded-xl shadow-sm hover:shadow-md transition"
               >
                 <div className="text-4xl mb-4">{step.icon}</div>
+
                 <h3 className="text-lg font-semibold text-red-900">
                   {step.title}
                 </h3>
+
               </div>
             ))}
 
           </div>
+
         </div>
+
       </section>
 
 
       {/* WHY DONATE */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="py-16 bg-gray-50">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
           <h2 className="text-3xl font-bold text-red-900 mb-12">
             Why Donate?
           </h2>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
             {[
               {
@@ -178,30 +195,36 @@ return (
             ].map((item, i) => (
               <div
                 key={i}
-                className="bg-white border border-red-100 p-8 rounded-xl shadow-sm hover:shadow-md transition"
+                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition"
               >
                 <div className="text-4xl mb-4">{item.icon}</div>
+
                 <h3 className="text-lg font-semibold text-red-900 mb-2">
                   {item.title}
                 </h3>
+
                 <p className="text-gray-600">{item.desc}</p>
+
               </div>
             ))}
 
           </div>
+
         </div>
+
       </section>
 
 
       {/* IMPACT STATS */}
-      <section className="py-16 px-6 bg-white text-center">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-16 bg-white text-center">
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <h2 className="text-3xl font-bold text-red-900 mb-12">
             Our Impact
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
 
             <div className="bg-red-50 p-6 rounded-xl">
               <FaUserGraduate className="text-4xl text-red-900 mx-auto mb-2" />
@@ -228,43 +251,18 @@ return (
             </div>
 
           </div>
-        </div>
-      </section>
-
-
-      {/* TESTIMONIALS */}
-      <section className="py-16 px-6 bg-gray-50 text-center">
-
-        <h2 className="text-3xl font-bold text-red-900 mb-12">
-          What People Say
-        </h2>
-
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-          <div className="lg:col-span-2 space-y-4 max-h-96 overflow-y-auto pr-2">
-            {feedbacks.map((feedback, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
-                <p className="italic text-gray-700 mb-4">
-                  “{feedback.description}”
-                </p>
-                <p className="font-semibold text-red-900">
-                  {feedback.reviewer}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <FeedbackForm refreshFeedbacks={getAllFeedbacks} />
 
         </div>
+
       </section>
+
     </main>
 
 
     {/* FOOTER */}
     <footer className="bg-red-900 text-white py-10">
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6 text-center md:text-left">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center md:text-left">
 
         <div>
           <h4 className="font-semibold mb-2">Address</h4>
@@ -288,7 +286,7 @@ return (
 
       </div>
 
-      <div className="mt-8 flex justify-center space-x-6 text-xl">
+      <div className="mt-8 flex justify-center gap-6 text-xl">
         <FaFacebook className="hover:text-blue-500 cursor-pointer" />
         <FaXTwitter className="hover:text-black cursor-pointer" />
         <FaInstagram className="hover:text-pink-500 cursor-pointer" />
@@ -300,6 +298,7 @@ return (
       </p>
 
     </footer>
+
   </div>
 );
 };

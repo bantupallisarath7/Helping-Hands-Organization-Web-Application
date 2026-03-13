@@ -1,19 +1,25 @@
 const About = () => {
-  return (
-    <section className="flex-1 overflow-y-auto py-10 px-4 sm:px-6 lg:px-8 bg-white">
+return (
+  <div className="flex-1 overflow-y-auto bg-gray-50">
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-10">
 
       {/* Heading */}
-      <div className="max-w-7xl mx-auto mb-8 w-full">
-        <h2 className="text-lg sm:text-xl font-bold text-red-900 text-center">
+      <div className="text-center sm:text-left">
+
+        <h2 className="text-xl sm:text-2xl font-bold text-red-900">
           About Us
         </h2>
-        <p className="text-gray-500 text-sm sm:text-base text-center mt-1">
+
+        <p className="text-gray-500 text-sm sm:text-base mt-1 max-w-2xl">
           Learn more about our mission, vision, and how we support students in need.
         </p>
+
       </div>
 
+
       {/* About Content */}
-      <div className="max-w-4xl mx-auto text-gray-700 space-y-6 text-sm sm:text-base leading-relaxed ">
+      <div className="max-w-3xl text-gray-700 text-sm sm:text-base leading-relaxed space-y-6">
 
         <p>
           <strong>Helping Hands Organization (HHO)</strong> is a student-led nonprofit
@@ -32,7 +38,7 @@ const About = () => {
 
         <p>
           Our mission is to create a sustainable support system where students
-          help fellow students whether it's through financial aid, mentorship,
+          help fellow students — whether it's through financial aid, mentorship,
           or organizing awareness events. We believe that small acts of
           kindness can create a ripple effect of impact.
         </p>
@@ -45,34 +51,53 @@ const About = () => {
 
       </div>
 
-      {/* Contact Section */}
-      <div className="mt-12 max-w-7xl mx-auto">
 
-        <h3 className="text-lg sm:text-xl font-bold text-red-900 text-center mb-6">
+      {/* Contact Section */}
+      <div className="space-y-6">
+
+        <h3 className="text-lg sm:text-xl sm:text-center font-bold text-red-900">
           Get in Touch
         </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-sm sm:text-base text-gray-700">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {/* Address */}
-          <div className="bg-gray-50 p-5 rounded-lg shadow-sm">
-            <h4 className="text-red-900 font-semibold mb-2">Address</h4>
-            <p>
+          <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+
+            <h4 className="text-red-900 font-semibold mb-2">
+              Address
+            </h4>
+
+            <p className="text-gray-600 text-sm sm:text-base">
               Santhanutalapadu, 523225 <br />
               Andhra Pradesh, India
             </p>
+
           </div>
+
 
           {/* Phone */}
-          <div className="bg-gray-50 p-5 rounded-lg shadow-sm">
-            <h4 className="text-red-900 font-semibold mb-2">Phone</h4>
-            <p>+91 79819 37656</p>
+          <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+
+            <h4 className="text-red-900 font-semibold mb-2">
+              Phone
+            </h4>
+
+            <p className="text-gray-600 text-sm sm:text-base">
+              +91 79819 37656
+            </p>
+
           </div>
 
+
           {/* Email */}
-          <div className="bg-gray-50 p-5 rounded-lg shadow-sm">
-            <h4 className="text-red-900 font-semibold mb-2">Email</h4>
-            <p>
+          <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+
+            <h4 className="text-red-900 font-semibold mb-2">
+              Email
+            </h4>
+
+            <p className="text-gray-600 text-sm sm:text-base">
               <a
                 href="mailto:hho@rguktong.ac.in"
                 className="hover:text-red-900 hover:underline"
@@ -80,13 +105,17 @@ const About = () => {
                 hho@rguktong.ac.in
               </a>
             </p>
+
           </div>
 
         </div>
+
       </div>
 
-    </section>
-  );
+    </div>
+
+  </div>
+);
 };
 
 export default About;
