@@ -47,83 +47,81 @@ const Profile = ({ userId, role, setRefreshProfile }) => {
     );
   } else {
 return (
-  <div className="flex items-center justify-center min-h-screen bg-gray-100">
-    <div className="relative w-full max-w-md sm:max-w-2xl md:max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-      {/* Profile header */}
-      <div className="bg-linear-to-r from-red-900 to-red-700 p-3 sm:p-6 text-white relative">
-        <MdCreate
-          title="Edit profile"
-          className="absolute top-2 right-2 sm:top-4 sm:right-4 text-lg sm:text-2xl text-white cursor-pointer hover:text-gray-200"
-          onClick={() => setIsEditing(true)}
+  <div className="relative w-full max-w-md sm:max-w-2xl md:max-w-4xl mx-auto my-4 bg-white rounded-lg shadow-lg overflow-hidden">
+    {/* Profile header */}
+    <div className="bg-linear-to-r from-red-900 to-red-700 p-3 sm:p-6 text-white relative">
+      <MdCreate
+        title="Edit profile"
+        className="absolute top-2 right-2 sm:top-4 sm:right-4 text-lg sm:text-2xl text-white cursor-pointer hover:text-gray-200"
+        onClick={() => setIsEditing(true)}
+      />
+      <div className="text-center space-y-2">
+        <ProfilePhoto
+          url={userData.profilePhotoUrl}
+          refreshProfile={getUserInfo}
+          setRefreshProfile={setRefreshProfile}
+          userId={userId}
         />
-        <div className="text-center space-y-2">
-          <ProfilePhoto
-            url={userData.profilePhotoUrl}
-            refreshProfile={getUserInfo}
-            setRefreshProfile={setRefreshProfile}
-            userId={userId}
-          />
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold">
-            {userData.fullName}
-          </h2>
-          <p className="text-sm sm:text-base md:text-lg capitalize">
-            {userData.role}
-          </p>
-          {userData.isHHOMember && (
-            <span className="inline-block bg-white text-red-500 text-xs sm:text-sm px-3 py-1 rounded-full font-semibold shadow">
-              HHO Member
-            </span>
-          )}
-        </div>
+        <h2 className="text-base sm:text-lg md:text-2xl font-bold">
+          {userData.fullName}
+        </h2>
+        <p className="text-sm sm:text-base md:text-lg capitalize">
+          {userData.role}
+        </p>
+        {userData.isHHOMember && (
+          <span className="inline-block bg-white text-red-500 text-xs sm:text-sm px-3 py-1 rounded-full font-semibold shadow">
+            HHO Member
+          </span>
+        )}
       </div>
-
-      {/* Profile details */}
-      {isEditing ? (
-        <EditProfileForm
-          userData={userData}
-          onClose={() => setIsEditing(false)}
-          onUpdate={(updatedUser) => setUserData(updatedUser)}
-          isAdmin={isAdmin}
-        />
-      ) : (
-        <div className="px-4 sm:px-8 py-6 space-y-4 text-sm sm:text-base md:text-lg text-gray-900 text-center">
-          <div>
-            <label className="font-semibold text-gray-600 hover:text-red-700">
-              Full Name:
-            </label>
-            <p>{userData.fullName}</p>
-          </div>
-          <div>
-            <label className="font-semibold text-gray-600 hover:text-red-700">
-              Email Address:
-            </label>
-            <p>{userData.email}</p>
-          </div>
-          <div>
-            <label className="font-semibold text-gray-600 hover:text-red-700">
-              Phone Number:
-            </label>
-            <p>{userData.phoneNumber || "—"}</p>
-          </div>
-          <div>
-            <label className="font-semibold text-gray-600 hover:text-red-700">
-              DOB:
-            </label>
-            <p>{userData.dob ? dayjs(userData.dob).format("DD/MM/YYYY") : "—"}</p>
-          </div>
-          {!isAdmin && (
-            <div>
-              <label className="font-semibold text-gray-600 hover:text-red-700">
-                Donated Amount:
-              </label>
-              <p className="text-green-600 font-semibold">
-                ₹{userData.donatedAmount?.toLocaleString() || 0}
-              </p>
-            </div>
-          )}
-        </div>
-      )}
     </div>
+
+    {/* Profile details */}
+    {isEditing ? (
+      <EditProfileForm
+        userData={userData}
+        onClose={() => setIsEditing(false)}
+        onUpdate={(updatedUser) => setUserData(updatedUser)}
+        isAdmin={isAdmin}
+      />
+    ) : (
+      <div className="px-4 sm:px-8 py-6 space-y-4 text-sm sm:text-base md:text-lg text-gray-900 text-center">
+        <div>
+          <label className="font-semibold text-gray-600 hover:text-red-700">
+            Full Name:
+          </label>
+          <p>{userData.fullName}</p>
+        </div>
+        <div>
+          <label className="font-semibold text-gray-600 hover:text-red-700">
+            Email Address:
+          </label>
+          <p>{userData.email}</p>
+        </div>
+        <div>
+          <label className="font-semibold text-gray-600 hover:text-red-700">
+            Phone Number:
+          </label>
+          <p>{userData.phoneNumber || "—"}</p>
+        </div>
+        <div>
+          <label className="font-semibold text-gray-600 hover:text-red-700">
+            DOB:
+          </label>
+          <p>{userData.dob ? dayjs(userData.dob).format("DD/MM/YYYY") : "—"}</p>
+        </div>
+        {!isAdmin && (
+          <div>
+            <label className="font-semibold text-gray-600 hover:text-red-700">
+              Donated Amount:
+            </label>
+            <p className="text-green-600 font-semibold">
+              ₹{userData.donatedAmount?.toLocaleString() || 0}
+            </p>
+          </div>
+        )}
+      </div>
+    )}
   </div>
 );
   }
