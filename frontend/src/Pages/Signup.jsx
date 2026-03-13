@@ -65,85 +65,135 @@ const Signup = ({ setView }) => {
   };
 
 return (
-  <div className="min-h-screen flex items-center justify-center px-4">
-    <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
+  <div className="flex-1 overflow-y-auto bg-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
+
+    <div className="w-full max-w-md bg-white rounded-xl shadow-sm p-8 sm:p-10 space-y-6">
 
       {/* Heading */}
-      <div className="text-center mb-6">
-        <h4 className="text-xl font-bold text-gray-800">Create Account</h4>
+      <div className="text-center">
+
+        <h2 className="text-2xl font-bold text-red-900">
+          Create Account
+        </h2>
+
         <p className="text-sm text-gray-500 mt-1">
           Sign up to start using the platform
         </p>
+
       </div>
+
 
       <form onSubmit={submitHandler} className="space-y-5">
 
         {/* Username */}
-        <div>
-          <input
-            type="text"
-            value={formFields.username}
-            placeholder="Enter your username"
-            onChange={(e) =>
-              setFormFields({ ...formFields, username: e.target.value })
-            }
-            className="mt-1 w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-800 focus:border-red-800 transition"
-          />
-        </div>
+        <input
+          type="text"
+          value={formFields.username}
+          placeholder="Enter your username"
+          onChange={(e) =>
+            setFormFields({ ...formFields, username: e.target.value })
+          }
+          className="
+            w-full px-4 py-2.5
+            border border-gray-200
+            rounded-lg
+            focus:outline-none
+            focus:ring-2 focus:ring-red-900
+            focus:border-red-900
+            transition
+            text-sm
+          "
+        />
+
 
         {/* Email */}
-        <div>
-          <input
-            type="email"
-            value={formFields.email}
-            placeholder="Enter your email"
-            onChange={(e) =>
-              setFormFields({ ...formFields, email: e.target.value })
-            }
-            className="mt-1 w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-800 focus:border-red-800 transition"
-          />
-        </div>
+        <input
+          type="email"
+          value={formFields.email}
+          placeholder="Enter your email"
+          onChange={(e) =>
+            setFormFields({ ...formFields, email: e.target.value })
+          }
+          className="
+            w-full px-4 py-2.5
+            border border-gray-200
+            rounded-lg
+            focus:outline-none
+            focus:ring-2 focus:ring-red-900
+            focus:border-red-900
+            transition
+            text-sm
+          "
+        />
+
 
         {/* Password */}
-        <div>
-          <input
-            type="password"
-            value={formFields.password}
-            placeholder="Enter your password"
-            onChange={(e) =>
-              setFormFields({ ...formFields, password: e.target.value })
-            }
-            className="mt-1 w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-800 focus:border-red-800 transition"
-          />
-        </div>
+        <input
+          type="password"
+          value={formFields.password}
+          placeholder="Enter your password"
+          onChange={(e) =>
+            setFormFields({ ...formFields, password: e.target.value })
+          }
+          className="
+            w-full px-4 py-2.5
+            border border-gray-200
+            rounded-lg
+            focus:outline-none
+            focus:ring-2 focus:ring-red-900
+            focus:border-red-900
+            transition
+            text-sm
+          "
+        />
 
+
+        {/* Error */}
         {error && (
-          <p className="text-sm text-red-600 text-center">{error}</p>
+          <p className="text-sm text-red-600 text-center">
+            {error}
+          </p>
         )}
+
 
         {/* Button */}
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-red-900 text-white py-2.5 rounded-lg font-semibold hover:bg-red-700 transition shadow-md"
+          className="
+            w-full
+            bg-red-900 text-white
+            py-2.5
+            rounded-lg
+            font-medium
+            hover:bg-red-800
+            transition
+            shadow-sm
+          "
         >
           {loading ? "Signing up..." : "Create Account"}
         </button>
 
-        {/* Login */}
+
+        {/* Login Link */}
         <p className="text-sm text-center text-gray-600">
+
           Already have an account?{" "}
+
           <button
             type="button"
             onClick={() => setView("signin")}
-            className="text-red-800 font-semibold hover:underline"
+            className="text-red-900 font-medium hover:underline"
           >
             Login
           </button>
+
         </p>
 
       </form>
+
     </div>
+
   </div>
 );
 };
