@@ -72,17 +72,17 @@ return (
       </section>
 
 
-      {/* Status Filters */}
+      {/* Status Filters (CONSISTENT STYLE) */}
       <section>
-        <div className="flex flex-wrap gap-2 sm:gap-3 justify-center sm:justify-start">
+        <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
 
           <button
             onClick={() => setStatus("all")}
             className={`px-4 py-2 rounded-full text-sm font-medium transition
             ${
               status === "all"
-                ? "bg-blue-200 text-gray-900"
-                : "bg-gray-100 text-gray-700 hover:bg-blue-200 hover:text-gray-900"
+                ? "bg-red-900 text-white"
+                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
             }`}
           >
             All
@@ -93,8 +93,8 @@ return (
             className={`px-4 py-2 rounded-full text-sm font-medium transition
             ${
               status === "pending"
-                ? "bg-yellow-200 text-gray-900"
-                : "bg-gray-100 text-gray-700 hover:bg-yellow-200 hover:text-gray-900"
+                ? "bg-yellow-500 text-white"
+                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
             }`}
           >
             Pending
@@ -105,8 +105,8 @@ return (
             className={`px-4 py-2 rounded-full text-sm font-medium transition
             ${
               status === "approved"
-                ? "bg-green-200 text-gray-900"
-                : "bg-gray-100 text-gray-700 hover:bg-green-200 hover:text-gray-900"
+                ? "bg-green-600 text-white"
+                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
             }`}
           >
             Approved
@@ -117,8 +117,8 @@ return (
             className={`px-4 py-2 rounded-full text-sm font-medium transition
             ${
               status === "rejected"
-                ? "bg-red-200 text-gray-900"
-                : "bg-gray-100 text-gray-700 hover:bg-red-200 hover:text-gray-900"
+                ? "bg-red-500 text-white"
+                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
             }`}
           >
             Rejected
@@ -129,8 +129,8 @@ return (
             className={`px-4 py-2 rounded-full text-sm font-medium transition
             ${
               status === "funded"
-                ? "bg-green-300 text-gray-900"
-                : "bg-gray-100 text-gray-700 hover:bg-green-200 hover:text-gray-900"
+                ? "bg-green-700 text-white"
+                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
             }`}
           >
             Funded
@@ -141,12 +141,19 @@ return (
 
 
       {/* Receipts Content */}
-      <section>
+      <section className="min-h-[60vh]">
 
         {loading ? (
 
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-red-700"></div>
+          /* CONSISTENT SPINNER */
+          <div className="flex flex-col items-center justify-center py-20 text-center gap-4">
+
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-red-900"></div>
+
+            <p className="text-gray-500 text-sm sm:text-base font-medium">
+              Loading receipts...
+            </p>
+
           </div>
 
         ) : getReceipts().length === 0 ? (
@@ -169,7 +176,7 @@ return (
                 setLoading(true);
                 fetchReceipts();
               }}
-              className="mt-6 px-5 py-2 bg-red-900 text-white rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
+              className="mt-6 px-6 py-2.5 bg-red-900 text-white rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
             >
               Refresh Receipts
             </button>
