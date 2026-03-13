@@ -76,15 +76,15 @@ return (
 
 
     {/* Filter Buttons */}
-    <div className="max-w-7xl mx-auto w-full px-4 mb-4">
+    <div className="max-w-7xl mx-auto w-full px-4 mb-6">
       <div className="flex flex-wrap gap-2 sm:gap-3 justify-center md:justify-start">
 
         <button
           onClick={() => setStatus("all")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition
+          className={`px-4 py-1.5 rounded-md text-sm font-medium transition
           ${status === "all"
-              ? "bg-blue-200 text-gray-900"
-              : "bg-gray-100 text-gray-700 hover:bg-blue-200 hover:text-gray-900"
+              ? "bg-red-100 text-red-900"
+              : "bg-gray-100 text-gray-700 hover:bg-red-50 hover:text-red-900"
             }`}
         >
           All
@@ -92,10 +92,10 @@ return (
 
         <button
           onClick={() => setStatus("pending")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition
+          className={`px-4 py-1.5 rounded-md text-sm font-medium transition
           ${status === "pending"
-              ? "bg-yellow-200 text-gray-900"
-              : "bg-gray-100 text-gray-700 hover:bg-yellow-200 hover:text-gray-900"
+              ? "bg-yellow-100 text-yellow-800"
+              : "bg-gray-100 text-gray-700 hover:bg-yellow-50 hover:text-yellow-800"
             }`}
         >
           Pending
@@ -103,10 +103,10 @@ return (
 
         <button
           onClick={() => setStatus("approved")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition
+          className={`px-4 py-1.5 rounded-md text-sm font-medium transition
           ${status === "approved"
-              ? "bg-green-200 text-gray-900"
-              : "bg-gray-100 text-gray-700 hover:bg-green-200 hover:text-gray-900"
+              ? "bg-green-100 text-green-800"
+              : "bg-gray-100 text-gray-700 hover:bg-green-50 hover:text-green-800"
             }`}
         >
           Approved
@@ -114,10 +114,10 @@ return (
 
         <button
           onClick={() => setStatus("rejected")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition
+          className={`px-4 py-1.5 rounded-md text-sm font-medium transition
           ${status === "rejected"
-              ? "bg-red-200 text-gray-900"
-              : "bg-gray-100 text-gray-700 hover:bg-red-200 hover:text-gray-900"
+              ? "bg-red-100 text-red-900"
+              : "bg-gray-100 text-gray-700 hover:bg-red-50 hover:text-red-900"
             }`}
         >
           Rejected
@@ -125,10 +125,10 @@ return (
 
         <button
           onClick={() => setStatus("funded")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition
+          className={`px-4 py-1.5 rounded-md text-sm font-medium transition
           ${status === "funded"
-              ? "bg-green-200 text-gray-900"
-              : "bg-gray-100 text-gray-700 hover:bg-green-200 hover:text-gray-900"
+              ? "bg-green-100 text-green-800"
+              : "bg-gray-100 text-gray-700 hover:bg-green-50 hover:text-green-800"
             }`}
         >
           Funded
@@ -139,17 +139,20 @@ return (
 
 
     {/* Campaign Section */}
-    <div className="flex-1 px-4 pb-8">
+    <div className="flex-1 px-4 pb-10">
 
       {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-10 w-10 border-4 border-red-200 border-t-red-700"></div>
-          </div>
+
+        <div className="flex justify-center items-center py-20">
+          {/* Consistent Spinner */}
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-red-900"></div>
+        </div>
+
       ) : getCampaigns().length === 0 ? (
 
         <div className="flex flex-col items-center justify-center py-20 text-center">
 
-          <div className="text-6xl mb-4">📢</div>
+          <div className="text-5xl mb-4">📢</div>
 
           <h3 className="text-xl sm:text-2xl font-semibold text-red-900 mb-2">
             No {status} campaigns found
@@ -166,7 +169,7 @@ return (
               setLoading(true);
               fetchAllCampaigns();
             }}
-            className="mt-6 px-5 py-2 bg-red-900 text-white rounded-md hover:bg-red-700 transition"
+            className="mt-6 px-5 py-2 bg-red-900 text-white rounded-md hover:bg-red-800 transition"
           >
             Refresh Campaigns
           </button>
@@ -175,7 +178,7 @@ return (
 
       ) : (
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {getCampaigns().map((campaign) => (
             <CampaignCard
