@@ -76,7 +76,7 @@ return (
 
       <div
         onClick={() => setAdminView("admin-profile")}
-        className="lg:hidden cursor-pointer"
+        className="cursor-pointer"
       >
         {userData && <ProfileInfo userInfo={userData} />}
       </div>

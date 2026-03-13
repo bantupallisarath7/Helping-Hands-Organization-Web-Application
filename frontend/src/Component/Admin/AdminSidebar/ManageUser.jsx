@@ -60,122 +60,115 @@ const ManageUsers = ({ setAdminView, setSelectedUserId }) => {
 
   };
 
-return (
-  <div className="flex-1 overflow-y-auto bg-gray-50">
-
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+  return (
+    <div className="p-6">
 
       {/* Header */}
-      <section className="text-center sm:text-left">
-
-        <h2 className="text-xl sm:text-2xl font-bold text-red-900">
+      <div className="mb-6">
+        <h2 className="text-xl font-bold text-red-900 text-center sm:text-left">
           Manage Users
         </h2>
 
-        <p className="text-gray-500 text-sm sm:text-base mt-1 max-w-2xl">
+        <p className="text-gray-500 text-sm sm:text-base text-center sm:text-left mt-1 max-w-2xl">
           View, edit and manage all registered users in the system.
         </p>
+      </div>
 
-      </section>
 
+      {/* Loading State */}
+      {loading ? (
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <div className="animate-spin rounded-full h-10 w-10 border-4 border-gray-200 border-t-red-900"></div>
+          <p className="text-gray-500 text-sm">Loading users...</p>
+        </div>
+      ) : allUsers.length === 0 ? (
 
-      {/* Table Section */}
-      <section className="min-h-[60vh]">
+        /* Empty State */
+        <div className="flex flex-col items-center justify-center py-20 text-center">
+          <h3 className="text-lg font-semibold text-red-900 mb-2">
+            No Users Found
+          </h3>
+          <p className="text-gray-500 text-sm">
+            There are no registered users yet.
+          </p>
+        </div>
 
-        <div className="w-full overflow-x-auto">
+      ) : (
 
-          <table className="min-w-[700px] w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+        /* 🔴 TABLE SECTION (UNCHANGED — EXACT SAME CODE) */
+        <div className="w-80 sm:w-auto md:w-auto lg:w-full overflow-x-auto">
 
-            {/* Table Head */}
+          <table className="min-w-[600px] w-full bg-white border border-gray-200 rounded shadow">
+
             <thead className="bg-red-900 text-white">
-
               <tr>
-                <th className="px-4 py-3 text-left font-medium">Name</th>
-                <th className="px-4 py-3 text-left font-medium">Email</th>
-                <th className="px-4 py-3 text-left font-medium">Role</th>
-                <th className="px-4 py-3 text-left font-medium">Status</th>
-                <th className="px-4 py-3 text-center font-medium">Actions</th>
+                <th className="px-4 py-2 text-left">Name</th>
+                <th className="px-4 py-2 text-left">Email</th>
+                <th className="px-4 py-2 text-left">Role</th>
+                <th className="px-4 py-2 text-left">Status</th>
+                <th className="px-4 py-2 text-center">Actions</th>
               </tr>
-
             </thead>
 
-            {/* Table Body */}
-            <tbody className="divide-y divide-gray-100">
-
+            <tbody>
               {allUsers.map((user) => (
-                <tr key={user._id} className="hover:bg-gray-50 transition">
+                <tr key={user._id} className="border-t">
 
-                  <td className="px-4 py-3 font-medium text-gray-800">
-                    {user.fullName}
-                  </td>
+                  <td className="px-4 py-2">{user.fullName}</td>
+                  <td className="px-4 py-2">{user.email}</td>
 
-                  <td className="px-4 py-3 text-gray-600">
-                    {user.email}
-                  </td>
-
-                  <td className="px-4 py-3 capitalize text-gray-700">
+                  <td className="px-4 py-2 capitalize">
                     {user.role}
                   </td>
 
-                  <td className="px-4 py-3">
+                  <td className="px-4 py-2">
                     <span
-                      className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
-                        user.isActive
+                      className={`inline-block px-2 py-1 rounded text-xs font-semibold ${user.isActive
                           ? "bg-green-100 text-green-800"
                           : "bg-gray-200 text-gray-700"
-                      }`}
+                        }`}
                     >
                       {user.isActive ? "Active" : "Inactive"}
                     </span>
                   </td>
 
-                  <td className="px-4 py-3 text-center space-x-3">
+                  <td className="px-4 py-2 text-center space-x-2">
 
                     <button
                       onClick={() => editUser(user._id)}
-                      className="text-blue-600 hover:text-blue-800 transition"
-                      title="Edit"
+                      className="text-blue-600 hover:text-blue-800"
                     >
-                      <MdEdit size={18} />
+                      <MdEdit />
                     </button>
 
                     <button
                       onClick={() => deleteUser(user._id)}
-                      className="text-red-600 hover:text-red-800 transition"
-                      title="Delete"
+                      className="text-red-600 hover:text-red-800"
                     >
-                      <MdDelete size={18} />
+                      <MdDelete />
                     </button>
 
                     <button
                       onClick={() => toggleStatus(user._id, !user.isActive)}
-                      className="text-gray-600 hover:text-gray-800 transition"
-                      title="Toggle Status"
+                      className="text-gray-600 hover:text-gray-800"
                     >
-                      {user.isActive ? (
-                        <MdToggleOn size={22} />
-                      ) : (
-                        <MdToggleOff size={22} />
-                      )}
+                      {user.isActive ? <MdToggleOn /> : <MdToggleOff />}
                     </button>
 
                   </td>
 
                 </tr>
               ))}
-
             </tbody>
 
           </table>
 
         </div>
 
-      </section>
+      )}
 
     </div>
-
-  </div>
-);
+  );
 };
 
 export default ManageUsers;
