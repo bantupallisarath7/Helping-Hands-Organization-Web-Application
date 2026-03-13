@@ -17,7 +17,7 @@ const Menu = ({ setView, activeView, setFormMode, setEditCampaign }) => {
   const onSignout = async () => {
     try {
       dispatch(signOutStart());
-      const res = await axios.get("https://api-hho.onrender.com/auth/signout", {
+      const res = await axios.post("https://api-hho.onrender.com/auth/signout", {
         withCredentials: true,
       });
 
