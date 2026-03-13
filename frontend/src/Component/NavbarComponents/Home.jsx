@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 const Home = ({ setView }) => {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const [loading, setLoading] = useState(true);
   const [donatedAmount, setDonatedAmount] = useState(0);
   const [approvedCampaigns, setApprovedCampaigns] = useState([])
   const [pendingDonations, setPendingDonations] = useState([])
@@ -54,133 +55,125 @@ const Home = ({ setView }) => {
     }
   }
   useEffect(() => {
-    fetchDonatedAmount()
-    fetchApprovedCampaigns()
-    fetchPendingDonations()
-  }, [])
+    const loadData = async () => {
+      try {
+        setLoading(true);
+
+        await Promise.all([
+          fetchDonatedAmount(),
+          fetchApprovedCampaigns(),
+          fetchPendingDonations(),
+        ]);
+
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
 
 return (
   <div className="flex-1 overflow-y-auto bg-gray-50">
 
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
-
-      {/* Welcome Section */}
-      <section className="text-center">
-
-        <h1 className="text-2xl sm:text-3xl font-bold text-red-900">
-          Welcome back, {currentUser.fullName}
-        </h1>
-
-        <p className="text-gray-600 mt-2 text-sm sm:text-base max-w-2xl mx-auto">
-          Here's a quick look at your impact and activity.
-        </p>
-
-      </section>
-
-
-      {/* Stats Section */}
-      <section
-        className="
-        grid gap-6
-        grid-cols-1
-        sm:grid-cols-2
-        lg:grid-cols-3
-      "
-      >
-
-        {/* Total Donations */}
-        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center">
-
-          <p className="text-sm font-medium text-gray-500">
-            Total Donations
+    {loading ? (
+      <div className="flex items-center justify-center h-[70vh]">
+        <div className="flex flex-col items-center gap-4">
+          <div className="animate-spin rounded-full h-14 w-14 border-4 border-gray-200 border-t-red-900"></div>
+          <p className="text-gray-600 font-medium">
+            Loading your dashboard...
           </p>
-
-          <p className="text-3xl font-bold text-red-900 mt-2">
-            ₹{donatedAmount.toLocaleString()}
-          </p>
-
         </div>
+      </div>
+    ) : (
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
 
-        {/* Active Campaigns */}
-        <div
-          onClick={() => setView("mycampaigns")}
-          className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer text-center"
-        >
-
-          <p className="text-sm font-medium text-gray-500">
-            Active Campaigns
+        {/* Welcome Section */}
+        <section className="text-center">
+          <h1 className="text-2xl sm:text-3xl font-bold text-red-900">
+            Welcome back, {currentUser.fullName}
+          </h1>
+          <p className="text-gray-600 mt-2 text-sm sm:text-base max-w-2xl mx-auto">
+            Here's a quick look at your impact and activity.
           </p>
+        </section>
 
-          <p className="text-3xl font-bold text-red-900 mt-2">
-            {approvedCampaigns.length}
-          </p>
+        {/* Stats Section */}
+        <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
-        </div>
+          {/* Total Donations */}
+          <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center">
+            <p className="text-sm font-medium text-gray-500">
+              Total Donations
+            </p>
+            <p className="text-3xl font-bold text-red-900 mt-2">
+              ₹{donatedAmount.toLocaleString()}
+            </p>
+          </div>
 
+          {/* Active Campaigns */}
+          <div
+            onClick={() => setView("mycampaigns")}
+            className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer text-center"
+          >
+            <p className="text-sm font-medium text-gray-500">
+              Active Campaigns
+            </p>
+            <p className="text-3xl font-bold text-red-900 mt-2">
+              {approvedCampaigns.length}
+            </p>
+          </div>
 
-        {/* Pending Donations */}
-        <div
-          onClick={() => setView("donationreceipts")}
-          className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer text-center"
-        >
+          {/* Pending Donations */}
+          <div
+            onClick={() => setView("donationreceipts")}
+            className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer text-center"
+          >
+            <p className="text-sm font-medium text-gray-500">
+              Pending Donations
+            </p>
+            <p className="text-3xl font-bold text-red-900 mt-2">
+              {pendingDonations.length}
+            </p>
+          </div>
 
-          <p className="text-sm font-medium text-gray-500">
-            Pending Donations
-          </p>
+        </section>
 
-          <p className="text-3xl font-bold text-red-900 mt-2">
-            {pendingDonations.length}
-          </p>
+        {/* Action Buttons */}
+        <section className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button
+            onClick={() => setView("campaignform")}
+            className="w-full sm:w-auto bg-red-900 text-white px-6 py-2.5 rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
+          >
+            Start New Campaign
+          </button>
 
-        </div>
+          <button
+            onClick={() => setView("mydonations")}
+            className="w-full sm:w-auto bg-red-900 text-white px-6 py-2.5 rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
+          >
+            View My Donations
+          </button>
+        </section>
 
-      </section>
+        {/* Recent Activity */}
+        <section className="space-y-4">
+          <h2 className="text-lg sm:text-xl font-bold text-red-900 text-center">
+            Recent Activity
+          </h2>
+          <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition max-w-2xl mx-auto">
+            <p className="text-gray-700 text-sm sm:text-base text-center">
+              <span className="font-semibold text-red-900">
+                Last Donation:
+              </span>{" "}
+              {stats.lastDonation}
+            </p>
+          </div>
+        </section>
 
-
-      {/* Action Buttons */}
-      <section className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-
-        <button
-          onClick={() => setView("campaignform")}
-          className="w-full sm:w-auto bg-red-900 text-white px-6 py-2.5 rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
-        >
-          Start New Campaign
-        </button>
-
-        <button
-          onClick={() => setView("mydonations")}
-          className="w-full sm:w-auto bg-red-900 text-white px-6 py-2.5 rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
-        >
-          View My Donations
-        </button>
-
-      </section>
-
-
-      {/* Recent Activity */}
-      <section className="space-y-4">
-
-        <h2 className="text-lg sm:text-xl font-bold text-red-900 text-center">
-          Recent Activity
-        </h2>
-
-        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition max-w-2xl mx-auto">
-
-          <p className="text-gray-700 text-sm sm:text-base text-center">
-
-            <span className="font-semibold text-red-900">
-              Last Donation:
-            </span>{" "}
-            {stats.lastDonation}
-
-          </p>
-
-        </div>
-
-      </section>
-
-    </div>
+      </div>
+    )}
 
   </div>
 );
