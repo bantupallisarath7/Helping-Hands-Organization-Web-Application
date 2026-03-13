@@ -62,7 +62,7 @@ return (
 <>
   <aside className="w-64 h-screen bg-white shadow-md flex flex-col">
 
-    {/* Header */}
+    {/* Title */}
     <div className="p-6 border-b">
       <h2 className="text-lg font-bold text-red-900">
         Admin Panel
@@ -70,8 +70,8 @@ return (
     </div>
 
 
-    {/* Scrollable Menu */}
-    <div className="flex-1 overflow-y-auto p-4 space-y-1 text-gray-700 font-medium">
+    {/* Scrollable menu */}
+    <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1 text-gray-700 font-medium">
 
       <button
         onClick={() => setAdminView("admin-home")}
@@ -153,8 +153,8 @@ return (
     </div>
 
 
-    {/* Fixed Bottom Signout */}
-    <div className="p-4 border-t">
+    {/* Bottom Signout */}
+    <div className="p-4 border-t bg-white">
 
       <button
         onClick={onSignout}
@@ -169,7 +169,7 @@ return (
   </aside>
 
 
-  {/* Loading Modal */}
+  {/* Signout Loading Modal */}
   {signoutLoading && (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
 
