@@ -62,121 +62,35 @@ const ManageCampaigns = ({ setAdminView, setFormMode, setEditCampaign }) => {
 
 return (
   <div className="flex flex-col mt-6">
-
     {/* Heading */}
-    <div className="max-w-7xl mx-auto w-full px-4 mb-6">
+    <div className="relative w-full max-w-md sm:max-w-2xl md:max-w-4xl mx-auto px-4 mb-6">
       <h2 className="text-lg sm:text-xl font-bold text-red-900 text-center md:text-left">
         Manage Campaigns
       </h2>
-
       <p className="text-gray-500 text-sm sm:text-base mt-1 text-center md:text-left">
         Review, approve, or reject campaigns and keep track of their funding status.
       </p>
     </div>
 
-
     {/* Filter Buttons */}
-    <div className="max-w-7xl mx-auto w-full px-4 mb-4">
+    <div className="relative w-full max-w-md sm:max-w-2xl md:max-w-4xl mx-auto px-4 mb-4">
       <div className="flex flex-wrap gap-2 sm:gap-3 justify-center md:justify-start">
-
-        <button
-          onClick={() => setStatus("all")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition
-          ${status === "all"
-              ? "bg-blue-200 text-gray-900"
-              : "bg-gray-100 text-gray-700 hover:bg-blue-200 hover:text-gray-900"
-            }`}
-        >
-          All
-        </button>
-
-        <button
-          onClick={() => setStatus("pending")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition
-          ${status === "pending"
-              ? "bg-yellow-200 text-gray-900"
-              : "bg-gray-100 text-gray-700 hover:bg-yellow-200 hover:text-gray-900"
-            }`}
-        >
-          Pending
-        </button>
-
-        <button
-          onClick={() => setStatus("approved")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition
-          ${status === "approved"
-              ? "bg-green-200 text-gray-900"
-              : "bg-gray-100 text-gray-700 hover:bg-green-200 hover:text-gray-900"
-            }`}
-        >
-          Approved
-        </button>
-
-        <button
-          onClick={() => setStatus("rejected")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition
-          ${status === "rejected"
-              ? "bg-red-200 text-gray-900"
-              : "bg-gray-100 text-gray-700 hover:bg-red-200 hover:text-gray-900"
-            }`}
-        >
-          Rejected
-        </button>
-
-        <button
-          onClick={() => setStatus("funded")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition
-          ${status === "funded"
-              ? "bg-green-200 text-gray-900"
-              : "bg-gray-100 text-gray-700 hover:bg-green-200 hover:text-gray-900"
-            }`}
-        >
-          Funded
-        </button>
-
+        {/* buttons here */}
       </div>
     </div>
 
-
     {/* Campaign Section */}
-    <div className="flex-1 px-4 pb-8">
-
+    <div className="relative w-full max-w-md sm:max-w-2xl md:max-w-4xl mx-auto px-4 pb-8">
       {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-10 w-10 border-4 border-red-200 border-t-red-700"></div>
-          </div>
-      ) : getCampaigns().length === 0 ? (
-
-        <div className="flex flex-col items-center justify-center py-20 text-center">
-
-          <div className="text-6xl mb-4">📢</div>
-
-          <h3 className="text-xl sm:text-2xl font-semibold text-red-900 mb-2">
-            No {status} campaigns found
-          </h3>
-
-          <p className="text-gray-500 text-sm max-w-md">
-            Users haven't created any{" "}
-            {status === "all" ? "campaigns" : status + " campaigns"} yet.
-            Try refreshing or check back later.
-          </p>
-
-          <button
-            onClick={() => {
-              setLoading(true);
-              fetchAllCampaigns();
-            }}
-            className="mt-6 px-5 py-2 bg-red-900 text-white rounded-md hover:bg-red-700 transition"
-          >
-            Refresh Campaigns
-          </button>
-
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-10 w-10 border-4 border-red-200 border-t-red-700"></div>
         </div>
-
+      ) : getCampaigns().length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-20 text-center">
+          {/* empty state */}
+        </div>
       ) : (
-
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {getCampaigns().map((campaign) => (
             <CampaignCard
               key={campaign._id}
@@ -187,13 +101,9 @@ return (
               refreshCampaigns={fetchAllCampaigns}
             />
           ))}
-
         </div>
-
       )}
-
     </div>
-
   </div>
 );
 }
