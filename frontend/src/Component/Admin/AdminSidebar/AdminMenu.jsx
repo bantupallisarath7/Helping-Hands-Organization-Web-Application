@@ -18,9 +18,11 @@ import {
 } from "../../../../redux/user/userSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const AdminMenu = ({ setAdminView, activeView, setSelectedUserId }) => {
   const dispatch = useDispatch();
+  const [signoutLoading, setSignoutLoading] = useState(false);
 
   const onSignout = async () => {
     try {
