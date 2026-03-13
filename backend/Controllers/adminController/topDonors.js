@@ -12,7 +12,7 @@ const topDonors = async (req, res, next) => {
 
     const formatted = topDonors.map((user) => ({
       name: user.fullName || "Anonymous",
-      photo: user.profilePhotoUrl ? `http://localhost:8815${user.profilePhotoUrl}` : null,
+      photo: user.profilePhotoUrl ? `https://api-hho.onrender.com${user.profilePhotoUrl}` : null,
       amount: user.donatedAmount,
     }));
 
