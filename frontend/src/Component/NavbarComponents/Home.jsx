@@ -62,16 +62,16 @@ const Home = ({ setView }) => {
 return (
   <div className="flex-1 overflow-y-auto bg-gray-50">
 
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
 
       {/* Welcome Section */}
-      <section className="text-center md:text-left">
+      <section className="text-center sm:text-left">
 
         <h1 className="text-2xl sm:text-3xl font-bold text-red-900">
           Welcome back, {currentUser.fullName}
         </h1>
 
-        <p className="text-gray-600 mt-2 text-sm sm:text-base">
+        <p className="text-gray-600 mt-2 text-sm sm:text-base max-w-2xl">
           Here's a quick look at your impact and activity.
         </p>
 
@@ -91,11 +91,11 @@ return (
         {/* Total Donations */}
         <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center">
 
-          <h2 className="text-sm sm:text-base font-semibold text-red-900">
+          <p className="text-sm font-medium text-gray-500">
             Total Donations
-          </h2>
+          </p>
 
-          <p className="text-2xl sm:text-3xl font-bold mt-2 text-gray-800">
+          <p className="text-3xl font-bold text-red-900 mt-2">
             ₹{donatedAmount.toLocaleString()}
           </p>
 
@@ -108,11 +108,11 @@ return (
           className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer text-center"
         >
 
-          <h2 className="text-sm sm:text-base font-semibold text-red-900">
+          <p className="text-sm font-medium text-gray-500">
             Active Campaigns
-          </h2>
+          </p>
 
-          <p className="text-2xl sm:text-3xl font-bold mt-2 text-gray-800">
+          <p className="text-3xl font-bold text-red-900 mt-2">
             {approvedCampaigns.length}
           </p>
 
@@ -125,11 +125,11 @@ return (
           className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer text-center"
         >
 
-          <h2 className="text-sm sm:text-base font-semibold text-red-900">
+          <p className="text-sm font-medium text-gray-500">
             Pending Donations
-          </h2>
+          </p>
 
-          <p className="text-2xl sm:text-3xl font-bold mt-2 text-gray-800">
+          <p className="text-3xl font-bold text-red-900 mt-2">
             {pendingDonations.length}
           </p>
 
@@ -139,7 +139,7 @@ return (
 
 
       {/* Action Buttons */}
-      <section className="flex flex-col sm:flex-row items-center gap-4">
+      <section className="flex flex-col sm:flex-row gap-4">
 
         <button
           onClick={() => setView("campaignform")}
@@ -159,19 +159,21 @@ return (
 
 
       {/* Recent Activity */}
-      <section>
+      <section className="space-y-4">
 
-        <h2 className="text-lg sm:text-xl font-bold text-red-900 mb-4">
+        <h2 className="text-lg sm:text-xl font-bold text-red-900">
           Recent Activity
         </h2>
 
-        <div className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition">
+        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
 
           <p className="text-gray-700 text-sm sm:text-base">
+
             <span className="font-semibold text-red-900">
               Last Donation:
             </span>{" "}
             {stats.lastDonation}
+
           </p>
 
         </div>

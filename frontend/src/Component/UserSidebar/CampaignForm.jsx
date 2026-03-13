@@ -141,190 +141,282 @@ const CampaignForm = ({ campaign, type, setView }) => {
     }
   }
 return (
-  <div className="mt-4 px-4 sm:px-6 lg:px-8">
-    {/* Header */}
-    <div className="max-w-7xl mx-auto mb-6 w-full">
-      <h2 className="text-md sm:text-lg md:text-md font-bold text-red-900 text-center sm:text-left">
-        {type === "edit" ? "Update Campaign" : "Create Campaign"}
-      </h2>
-      <p className="text-gray-500 text-sm sm:text-base text-center sm:text-left mt-1">
-        Fill in the details below to {type === "edit" ? "update your existing campaign" : "create a new campaign"} and start making an impact.
-      </p>
+  <div className="flex-1 overflow-y-auto bg-gray-50">
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+      {/* Header */}
+      <section className="text-center sm:text-left">
+
+        <h2 className="text-xl sm:text-2xl font-bold text-red-900">
+          {type === "edit" ? "Update Campaign" : "Create Campaign"}
+        </h2>
+
+        <p className="text-gray-500 text-sm sm:text-base mt-1 max-w-2xl">
+          Fill in the details below to{" "}
+          {type === "edit"
+            ? "update your existing campaign"
+            : "create a new campaign"}{" "}
+          and start making an impact.
+        </p>
+
+      </section>
+
+
+      {/* Form Card */}
+      <form
+        onSubmit={onSubmitHandler}
+        className="bg-white rounded-xl shadow-sm p-6 sm:p-8 space-y-6"
+      >
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          {/* Campaign Title */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Campaign Title
+            </label>
+            <input
+              type="text"
+              value={formField.title}
+              placeholder="Sujathamma Leg Operation"
+              onChange={(e) =>
+                setformField({ ...formField, title: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            />
+          </div>
+
+
+          {/* Recipient */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Recipient Name
+            </label>
+            <input
+              type="text"
+              value={formField.recipient}
+              placeholder="Sujathamma"
+              onChange={(e) =>
+                setformField({ ...formField, recipient: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            />
+          </div>
+
+
+          {/* Requested Student */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Requested Student
+            </label>
+            <input
+              type="text"
+              value={formField.student}
+              placeholder="Suresh"
+              onChange={(e) =>
+                setformField({ ...formField, student: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            />
+          </div>
+
+
+          {/* Category */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Category
+            </label>
+            <select
+              value={formField.category}
+              onChange={(e) =>
+                setformField({ ...formField, category: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            >
+              <option>Health</option>
+              <option>Education</option>
+              <option>Supplies</option>
+            </select>
+          </div>
+
+
+          {/* Amount */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Amount Required
+            </label>
+            <input
+              type="number"
+              value={formField.amount}
+              placeholder="25000"
+              onChange={(e) =>
+                setformField({ ...formField, amount: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            />
+          </div>
+
+
+          {/* Deadline */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Deadline
+            </label>
+            <input
+              type="date"
+              value={formField.deadline}
+              onChange={(e) =>
+                setformField({ ...formField, deadline: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            />
+          </div>
+
+
+          {/* Account Holder */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Account Holder Name
+            </label>
+            <input
+              type="text"
+              value={formField.accountHolder}
+              placeholder="Suresh"
+              onChange={(e) =>
+                setformField({ ...formField, accountHolder: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            />
+          </div>
+
+
+          {/* Account Number */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Account Number
+            </label>
+            <input
+              type="text"
+              value={formField.accountNumber}
+              placeholder="xxxxxxx9012"
+              onChange={(e) =>
+                setformField({ ...formField, accountNumber: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            />
+          </div>
+
+
+          {/* IFSC */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              IFSC Code
+            </label>
+            <input
+              type="text"
+              value={formField.ifsc}
+              placeholder="SBI00XXXX"
+              onChange={(e) =>
+                setformField({ ...formField, ifsc: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            />
+          </div>
+
+
+          {/* UPI */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              UPI
+            </label>
+            <input
+              type="text"
+              value={formField.upi}
+              placeholder="xxxx@ybl"
+              onChange={(e) =>
+                setformField({ ...formField, upi: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            />
+          </div>
+
+
+          {/* Mobile */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Mobile Number
+            </label>
+            <input
+              type="number"
+              value={formField.mobile}
+              placeholder="xxxxxxxx79"
+              onChange={(e) =>
+                setformField({ ...formField, mobile: e.target.value })
+              }
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+            />
+          </div>
+
+        </div>
+
+
+        {/* Description */}
+        <div>
+          <label className="block text-sm font-medium text-gray-600 mb-1">
+            Description
+          </label>
+          <textarea
+            rows="4"
+            value={formField.description}
+            placeholder="Describe the situation..."
+            onChange={(e) =>
+              setformField({ ...formField, description: e.target.value })
+            }
+            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900"
+          />
+        </div>
+
+
+        {/* Error */}
+        {error && (
+          <p className="text-sm text-red-600">{error}</p>
+        )}
+
+
+        {/* Buttons */}
+        <div className="flex flex-wrap gap-4 pt-2">
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-red-900 text-white px-6 py-2.5 rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
+          >
+            {loading
+              ? "Submitting..."
+              : type === "edit"
+              ? "Update Campaign"
+              : "Create Campaign"}
+          </button>
+
+          {type === "edit" && (
+            <button
+              type="button"
+              onClick={() =>
+                setView(isAdmin ? "manage-campaigns" : "mycampaigns")
+              }
+              className="px-6 py-2.5 bg-gray-200 rounded-lg hover:bg-gray-300 transition font-medium"
+            >
+              Cancel
+            </button>
+          )}
+
+        </div>
+
+      </form>
+
     </div>
 
-    {/* Form */}
-    <form
-      onSubmit={onSubmitHandler}
-      className="bg-white shadow-md rounded-lg p-6 border border-gray-200 space-y-4 text-sm sm:text-base text-gray-800 W-full"
-    >
-      {/* Campaign Title */}
-      <div>
-        <label className="block font-medium text-gray-500">Campaign Title</label>
-        <input
-          type="text"
-          value={formField.title}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          placeholder="Sujathamma Leg Operation"
-          onChange={(e) => setformField({ ...formField, title: e.target.value })}
-        />
-      </div>
-
-      {/* Recipient Name */}
-      <div>
-        <label className="block font-medium text-gray-500">Recipient Name</label>
-        <input
-          type="text"
-          value={formField.recipient}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          placeholder="Sujathamma"
-          onChange={(e) => setformField({ ...formField, recipient: e.target.value })}
-        />
-      </div>
-
-      {/* Requested Student */}
-      <div>
-        <label className="block font-medium text-gray-500">Requested Student</label>
-        <input
-          type="text"
-          value={formField.student}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          placeholder="Suresh"
-          onChange={(e) => setformField({ ...formField, student: e.target.value })}
-        />
-      </div>
-
-      {/* Category */}
-      <div>
-        <label className="block font-medium text-gray-500">Category</label>
-        <select
-          value={formField.category}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          onChange={(e) => setformField({ ...formField, category: e.target.value })}
-        >
-          <option>Health</option>
-          <option>Education</option>
-          <option>Supplies</option>
-        </select>
-      </div>
-
-      {/* Description */}
-      <div>
-        <label className="block font-medium text-gray-500">Description</label>
-        <textarea
-          value={formField.description}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          rows="3"
-          placeholder="Describe the situation..."
-          onChange={(e) => setformField({ ...formField, description: e.target.value })}
-        ></textarea>
-      </div>
-
-      {/* Amount Required */}
-      <div>
-        <label className="block font-medium text-gray-500">Amount Required</label>
-        <input
-          type="number"
-          value={formField.amount}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          placeholder="25000"
-          onChange={(e) => setformField({ ...formField, amount: e.target.value })}
-        />
-      </div>
-
-      {/* Deadline */}
-      <div>
-        <label className="block font-medium text-gray-500">Deadline</label>
-        <input
-          type="date"
-          value={formField.deadline}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          onChange={(e) => setformField({ ...formField, deadline: e.target.value })}
-        />
-      </div>
-
-      {/* Account Holder Name */}
-      <div>
-        <label className="block font-medium text-gray-500">Account Holder Name</label>
-        <input
-          type="text"
-          value={formField.accountHolder}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          placeholder="Suresh"
-          onChange={(e) => setformField({ ...formField, accountHolder: e.target.value })}
-        />
-      </div>
-
-      {/* Account Number */}
-      <div>
-        <label className="block font-medium text-gray-500">Account Number</label>
-        <input
-          type="text"
-          value={formField.accountNumber}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          placeholder="xxxxxxx9012"
-          onChange={(e) => setformField({ ...formField, accountNumber: e.target.value })}
-        />
-      </div>
-
-      {/* IFSC Code */}
-      <div>
-        <label className="block font-medium text-gray-500">IFSC Code</label>
-        <input
-          type="text"
-          value={formField.ifsc}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          placeholder="SBI00xxxx"
-          onChange={(e) => setformField({ ...formField, ifsc: e.target.value })}
-        />
-      </div>
-
-      {/* UPI */}
-      <div>
-        <label className="block font-medium text-gray-500">UPI</label>
-        <input
-          type="text"
-          value={formField.upi}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          placeholder="xxxxxx@ybl"
-          onChange={(e) => setformField({ ...formField, upi: e.target.value })}
-        />
-      </div>
-
-      {/* Mobile Number */}
-      <div>
-        <label className="block font-medium text-gray-500">Mobile Number</label>
-        <input
-          type="number"
-          value={formField.mobile}
-          className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-900"
-          placeholder="xxxxxx5579"
-          onChange={(e) => setformField({ ...formField, mobile: e.target.value })}
-        />
-      </div>
-
-      {/* Error message */}
-      <p className="text-sm mt-2 text-red-600">{error}</p>
-
-      {/* Buttons */}
-      <div className="flex flex-wrap gap-3 pt-2">
-        <button
-          type="submit"
-          className="bg-red-900 text-white px-4 py-2 rounded hover:bg-red-700 transition"
-          disabled={loading}
-        >
-          {loading ? "Submitting..." : type === "edit" ? "Update Campaign" : "Create Campaign"}
-        </button>
-        {type === "edit" && (
-          <button
-            type="button"
-            onClick={() => setView(isAdmin ? "manage-campaigns" : "mycampaigns")}
-            className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-          >
-            Cancel
-          </button>
-        )}
-      </div>
-    </form>
   </div>
 );
 };
