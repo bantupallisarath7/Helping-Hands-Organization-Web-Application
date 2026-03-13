@@ -71,7 +71,7 @@ return (
           Welcome back, {currentUser.fullName}
         </h1>
 
-        <p className="text-gray-600 mt-2 text-sm sm:text-base max-w-2xl">
+        <p className="text-gray-600 mt-2 text-sm sm:text-base max-w-2xl mx-auto">
           Here's a quick look at your impact and activity.
         </p>
 
@@ -139,7 +139,7 @@ return (
 
 
       {/* Action Buttons */}
-      <section className="flex flex-col sm:flex-row gap-4">
+      <section className="flex flex-col sm:flex-row gap-4 justify-center items-center">
 
         <button
           onClick={() => setView("campaignform")}
@@ -161,13 +161,13 @@ return (
       {/* Recent Activity */}
       <section className="space-y-4">
 
-        <h2 className="text-lg sm:text-xl font-bold text-red-900">
+        <h2 className="text-lg sm:text-xl font-bold text-red-900 text-center">
           Recent Activity
         </h2>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition max-w-2xl mx-auto">
 
-          <p className="text-gray-700 text-sm sm:text-base">
+          <p className="text-gray-700 text-sm sm:text-base text-center">
 
             <span className="font-semibold text-red-900">
               Last Donation:
