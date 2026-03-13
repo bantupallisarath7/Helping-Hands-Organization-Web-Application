@@ -69,118 +69,147 @@ const AdminHome = ({ setAdminView }) => {
 
 
 return (
-  <div className="space-y-10 max-w-7xl mx-auto">
+  <div className="flex-1 overflow-y-auto bg-gray-50">
 
-    {/* Welcome Section */}
-    <section className="text-center py-6 px-4">
-      <h1 className="text-2xl sm:text-3xl font-bold text-red-900">
-        Welcome Admin
-      </h1>
-      <p className="text-gray-600 mt-2 text-sm sm:text-base">
-        Here's an overview of platform activity and pending actions.
-      </p>
-    </section>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
 
+      {/* Welcome Section */}
+      <section className="text-center">
 
-    {/* Quick Stats */}
-    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 px-4">
+        <h1 className="text-2xl sm:text-3xl font-bold text-red-900">
+          Welcome Admin
+        </h1>
 
-      <div className="bg-white p-5 rounded-lg shadow hover:shadow-md transition text-center">
-        <h2 className="text-sm sm:text-base font-semibold text-red-900">
-          Total Donations
-        </h2>
-        <p className="text-xl sm:text-2xl font-bold mt-2">
-          ₹{collectedAmount}
+        <p className="text-gray-600 mt-2 text-sm sm:text-base max-w-2xl mx-auto">
+          Here's an overview of platform activity and pending actions.
         </p>
-      </div>
 
-      <div
-        onClick={() => setAdminView("applications")}
-        className="bg-white p-5 rounded-lg shadow hover:shadow-md transition text-center cursor-pointer"
+      </section>
+
+
+      {/* Quick Stats */}
+      <section
+        className="
+        grid gap-6
+        grid-cols-1
+        sm:grid-cols-2
+        lg:grid-cols-4
+      "
       >
-        <h2 className="text-sm sm:text-base font-semibold text-red-900">
-          New Campaigns
-        </h2>
-        <p className="text-xl sm:text-2xl font-bold mt-2">
-          {countPendingCampaigns}
-        </p>
-      </div>
 
-      <div
-        onClick={() => setAdminView("manage-campaigns")}
-        className="bg-white p-5 rounded-lg shadow hover:shadow-md transition text-center cursor-pointer"
-      >
-        <h2 className="text-sm sm:text-base font-semibold text-red-900">
-          Live Campaigns
-        </h2>
-        <p className="text-xl sm:text-2xl font-bold mt-2">
-          {countApprovedCampaigns}
-        </p>
-      </div>
+        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center">
 
-      <div
-        onClick={() => setAdminView("admin-donation-receipts")}
-        className="bg-white p-5 rounded-lg shadow hover:shadow-md transition text-center cursor-pointer"
-      >
-        <h2 className="text-sm sm:text-base font-semibold text-red-900">
-          Pending Receipts
-        </h2>
-        <p className="text-xl sm:text-2xl font-bold mt-2">
-          {pendingReceipts}
-        </p>
-      </div>
+          <p className="text-sm font-medium text-gray-500">
+            Total Donations
+          </p>
 
-    </section>
+          <p className="text-3xl font-bold text-red-900 mt-2">
+            ₹{collectedAmount}
+          </p>
+
+        </div>
 
 
-    {/* Admin Actions */}
-    <section className="px-4">
+        <div
+          onClick={() => setAdminView("applications")}
+          className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer text-center"
+        >
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <p className="text-sm font-medium text-gray-500">
+            New Campaigns
+          </p>
+
+          <p className="text-3xl font-bold text-red-900 mt-2">
+            {countPendingCampaigns}
+          </p>
+
+        </div>
+
+
+        <div
+          onClick={() => setAdminView("manage-campaigns")}
+          className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer text-center"
+        >
+
+          <p className="text-sm font-medium text-gray-500">
+            Live Campaigns
+          </p>
+
+          <p className="text-3xl font-bold text-red-900 mt-2">
+            {countApprovedCampaigns}
+          </p>
+
+        </div>
+
+
+        <div
+          onClick={() => setAdminView("admin-donation-receipts")}
+          className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer text-center"
+        >
+
+          <p className="text-sm font-medium text-gray-500">
+            Pending Receipts
+          </p>
+
+          <p className="text-3xl font-bold text-red-900 mt-2">
+            {pendingReceipts}
+          </p>
+
+        </div>
+
+      </section>
+
+
+      {/* Admin Actions */}
+      <section className="flex flex-col sm:flex-row gap-4 justify-center">
 
         <button
           onClick={() => setAdminView("manage-campaigns")}
-          className="w-full sm:w-auto bg-red-900 text-white px-6 py-2 rounded-md hover:bg-red-700 transition"
+          className="w-full sm:w-auto bg-red-900 text-white px-6 py-2.5 rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
         >
           Review Campaigns
         </button>
 
         <button
           onClick={() => setAdminView("applications")}
-          className="w-full sm:w-auto bg-red-900 text-white px-6 py-2 rounded-md hover:bg-red-700 transition"
+          className="w-full sm:w-auto bg-red-900 text-white px-6 py-2.5 rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
         >
           Approve Applications
         </button>
 
         <button
           onClick={() => setAdminView("admin-donation-receipts")}
-          className="w-full sm:w-auto bg-red-900 text-white px-6 py-2 rounded-md hover:bg-red-700 transition"
+          className="w-full sm:w-auto bg-red-900 text-white px-6 py-2.5 rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
         >
           Verify Donations
         </button>
 
-      </div>
-
-    </section>
+      </section>
 
 
-    {/* Recent Activity */}
-    <section className="px-4">
+      {/* Recent Activity */}
+      <section className="space-y-4">
 
-      <h2 className="text-lg sm:text-xl font-bold text-red-900 mb-4">
-        Recent Admin Activity
-      </h2>
+        <h2 className="text-lg sm:text-xl font-bold text-red-900">
+          Recent Admin Activity
+        </h2>
 
-      <div className="bg-white p-5 rounded-lg shadow">
-        <p className="text-gray-700 text-sm sm:text-base">
-          <span className="font-semibold text-red-900">
-            Last Approved:
-          </span>{" "}
-          {stats.lastApproved}
-        </p>
-      </div>
+        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
 
-    </section>
+          <p className="text-gray-700 text-sm sm:text-base">
+
+            <span className="font-semibold text-red-900">
+              Last Approved:
+            </span>{" "}
+            {stats.lastApproved}
+
+          </p>
+
+        </div>
+
+      </section>
+
+    </div>
 
   </div>
 );
