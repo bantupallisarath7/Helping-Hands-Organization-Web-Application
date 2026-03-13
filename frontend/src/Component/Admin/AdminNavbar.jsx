@@ -72,7 +72,7 @@ return (
     </div>
 
     {/* Desktop Profile */}
-    <div className="hidden md:flex items-center text-gray-700 font-medium">
+    <div className="flex items-center text-gray-700 font-medium">
 
       <div
         onClick={() => setAdminView("admin-profile")}
