@@ -74,7 +74,7 @@ const Signin = ({ setView, onLogin }) => {
 return (
   <div className="flex-1 overflow-y-auto bg-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
 
-    <div className="w-full max-w-md bg-white rounded-xl shadow-sm p-8 sm:p-10 space-y-6">
+    <div className="w-full max-w-md bg-white rounded-xl shadow-sm hover:shadow-md transition p-8 sm:p-10 space-y-6">
 
       {/* Title */}
       <div className="text-center">
@@ -83,7 +83,7 @@ return (
           Helping Hands
         </h2>
 
-        <p className="text-gray-500 text-sm mt-1">
+        <p className="text-gray-500 text-sm mt-1 max-w-xs mx-auto">
           Sign in to continue
         </p>
 
@@ -105,11 +105,11 @@ return (
               w-full px-4 py-2.5
               border border-gray-200
               rounded-lg
+              text-sm
               focus:outline-none
-              focus:ring-2 focus:ring-red-900
+              focus:ring-2 focus:ring-red-900/20
               focus:border-red-900
               transition
-              text-sm
             "
           />
         </div>
@@ -128,11 +128,11 @@ return (
               w-full px-4 py-2.5
               border border-gray-200
               rounded-lg
+              text-sm
               focus:outline-none
-              focus:ring-2 focus:ring-red-900
+              focus:ring-2 focus:ring-red-900/20
               focus:border-red-900
               transition
-              text-sm
             "
           />
         </div>
@@ -198,7 +198,7 @@ return (
           className="
             w-full
             bg-red-900 text-white
-            py-2.5
+            px-6 py-2.5
             rounded-lg
             font-medium
             hover:bg-red-800
