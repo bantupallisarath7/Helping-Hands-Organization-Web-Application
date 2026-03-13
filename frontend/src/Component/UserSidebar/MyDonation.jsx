@@ -61,7 +61,7 @@ return (
 
         <p className="text-gray-500 text-sm sm:text-base mt-1 max-w-2xl">
           Track your contributions, view receipts, and celebrate the impact
-          you’ve made by supporting campaigns.
+          you've made by supporting campaigns.
         </p>
 
       </div>

@@ -65,14 +65,14 @@ const Signup = ({ setView }) => {
   };
 
 return (
-  <div className="flex-1 overflow-y-auto bg-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
+  <div className="flex-1 overflow-y-auto bg-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
 
-    <div className="w-full max-w-md bg-white rounded-xl shadow-sm p-8 sm:p-10 space-y-6">
+    <div className="w-full max-w-md bg-white rounded-xl shadow-sm hover:shadow-md transition p-6 sm:p-10 space-y-6">
 
       {/* Heading */}
       <div className="text-center">
 
-        <h2 className="text-2xl font-bold text-red-900">
+        <h2 className="text-xl sm:text-2xl font-bold text-red-900">
           Create Account
         </h2>
 
@@ -94,17 +94,16 @@ return (
             setFormFields({ ...formFields, username: e.target.value })
           }
           className="
-            w-full px-4 py-2.5
+            w-full px-4 py-2
             border border-gray-200
             rounded-lg
+            text-sm
             focus:outline-none
-            focus:ring-2 focus:ring-red-900
+            focus:ring-2 focus:ring-red-900/20
             focus:border-red-900
             transition
-            text-sm
           "
         />
-
 
         {/* Email */}
         <input
@@ -115,17 +114,16 @@ return (
             setFormFields({ ...formFields, email: e.target.value })
           }
           className="
-            w-full px-4 py-2.5
+            w-full px-4 py-2
             border border-gray-200
             rounded-lg
+            text-sm
             focus:outline-none
-            focus:ring-2 focus:ring-red-900
+            focus:ring-2 focus:ring-red-900/20
             focus:border-red-900
             transition
-            text-sm
           "
         />
-
 
         {/* Password */}
         <input
@@ -136,17 +134,16 @@ return (
             setFormFields({ ...formFields, password: e.target.value })
           }
           className="
-            w-full px-4 py-2.5
+            w-full px-4 py-2
             border border-gray-200
             rounded-lg
+            text-sm
             focus:outline-none
-            focus:ring-2 focus:ring-red-900
+            focus:ring-2 focus:ring-red-900/20
             focus:border-red-900
             transition
-            text-sm
           "
         />
-
 
         {/* Error */}
         {error && (
@@ -155,7 +152,6 @@ return (
           </p>
         )}
 
-
         {/* Button */}
         <button
           type="submit"
@@ -163,7 +159,7 @@ return (
           className="
             w-full
             bg-red-900 text-white
-            py-2.5
+            py-2
             rounded-lg
             font-medium
             hover:bg-red-800
@@ -173,7 +169,6 @@ return (
         >
           {loading ? "Signing up..." : "Create Account"}
         </button>
-
 
         {/* Login Link */}
         <p className="text-sm text-center text-gray-600">

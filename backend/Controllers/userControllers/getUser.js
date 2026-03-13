@@ -26,7 +26,7 @@ const getUser = async (req, res, next) => {
         res.cookie("access_token", token, {
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
         })
         res.status(201).json({
             success: true,
