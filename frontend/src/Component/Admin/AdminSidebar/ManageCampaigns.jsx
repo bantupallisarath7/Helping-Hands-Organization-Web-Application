@@ -61,139 +61,159 @@ const ManageCampaigns = ({ setAdminView, setFormMode, setEditCampaign }) => {
 
 
 return (
-  <div className="flex flex-col mt-6">
+  <div className="flex-1 overflow-y-auto bg-gray-50">
 
-    {/* Heading */}
-    <div className="max-w-7xl mx-auto w-full px-4 mb-6">
-      <h2 className="text-lg sm:text-xl font-bold text-red-900 text-center md:text-left">
-        Manage Campaigns
-      </h2>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
 
-      <p className="text-gray-500 text-sm sm:text-base mt-1 text-center md:text-left">
-        Review, approve, or reject campaigns and keep track of their funding status.
-      </p>
-    </div>
+      {/* Header */}
+      <section className="text-center sm:text-left">
 
+        <h2 className="text-xl sm:text-2xl font-bold text-red-900">
+          Manage Campaigns
+        </h2>
 
-    {/* Filter Buttons */}
-    <div className="max-w-7xl mx-auto w-full px-4 mb-6">
-      <div className="flex flex-wrap gap-2 sm:gap-3 justify-center md:justify-start">
+        <p className="text-gray-500 text-sm sm:text-base mt-1 max-w-2xl">
+          Review, approve, or reject campaigns and keep track of their funding status.
+        </p>
 
-        <button
-          onClick={() => setStatus("all")}
-          className={`px-4 py-1.5 rounded-md text-sm font-medium transition
-          ${status === "all"
-              ? "bg-red-100 text-red-900"
-              : "bg-gray-100 text-gray-700 hover:bg-red-50 hover:text-red-900"
-            }`}
-        >
-          All
-        </button>
-
-        <button
-          onClick={() => setStatus("pending")}
-          className={`px-4 py-1.5 rounded-md text-sm font-medium transition
-          ${status === "pending"
-              ? "bg-yellow-100 text-yellow-800"
-              : "bg-gray-100 text-gray-700 hover:bg-yellow-50 hover:text-yellow-800"
-            }`}
-        >
-          Pending
-        </button>
-
-        <button
-          onClick={() => setStatus("approved")}
-          className={`px-4 py-1.5 rounded-md text-sm font-medium transition
-          ${status === "approved"
-              ? "bg-green-100 text-green-800"
-              : "bg-gray-100 text-gray-700 hover:bg-green-50 hover:text-green-800"
-            }`}
-        >
-          Approved
-        </button>
-
-        <button
-          onClick={() => setStatus("rejected")}
-          className={`px-4 py-1.5 rounded-md text-sm font-medium transition
-          ${status === "rejected"
-              ? "bg-red-100 text-red-900"
-              : "bg-gray-100 text-gray-700 hover:bg-red-50 hover:text-red-900"
-            }`}
-        >
-          Rejected
-        </button>
-
-        <button
-          onClick={() => setStatus("funded")}
-          className={`px-4 py-1.5 rounded-md text-sm font-medium transition
-          ${status === "funded"
-              ? "bg-green-100 text-green-800"
-              : "bg-gray-100 text-gray-700 hover:bg-green-50 hover:text-green-800"
-            }`}
-        >
-          Funded
-        </button>
-
-      </div>
-    </div>
+      </section>
 
 
-    {/* Campaign Section */}
-    <div className="flex-1 px-4 pb-10">
+      {/* Status Filters */}
+      <section>
 
-      {loading ? (
-
-        <div className="flex justify-center items-center py-20">
-          {/* Consistent Spinner */}
-          <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-red-900"></div>
-        </div>
-
-      ) : getCampaigns().length === 0 ? (
-
-        <div className="flex flex-col items-center justify-center py-20 text-center">
-
-          <div className="text-5xl mb-4">📢</div>
-
-          <h3 className="text-xl sm:text-2xl font-semibold text-red-900 mb-2">
-            No {status} campaigns found
-          </h3>
-
-          <p className="text-gray-500 text-sm max-w-md">
-            Users haven't created any{" "}
-            {status === "all" ? "campaigns" : status + " campaigns"} yet.
-            Try refreshing or check back later.
-          </p>
+        <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
 
           <button
-            onClick={() => {
-              setLoading(true);
-              fetchAllCampaigns();
-            }}
-            className="mt-6 px-5 py-2 bg-red-900 text-white rounded-md hover:bg-red-800 transition"
+            onClick={() => setStatus("all")}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition
+            ${status === "all"
+                ? "bg-red-900 text-white"
+                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
+              }`}
           >
-            Refresh Campaigns
+            All
+          </button>
+
+          <button
+            onClick={() => setStatus("pending")}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition
+            ${status === "pending"
+                ? "bg-yellow-500 text-white"
+                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
+              }`}
+          >
+            Pending
+          </button>
+
+          <button
+            onClick={() => setStatus("approved")}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition
+            ${status === "approved"
+                ? "bg-green-600 text-white"
+                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
+              }`}
+          >
+            Approved
+          </button>
+
+          <button
+            onClick={() => setStatus("rejected")}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition
+            ${status === "rejected"
+                ? "bg-red-500 text-white"
+                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
+              }`}
+          >
+            Rejected
+          </button>
+
+          <button
+            onClick={() => setStatus("funded")}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition
+            ${status === "funded"
+                ? "bg-green-700 text-white"
+                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
+              }`}
+          >
+            Funded
           </button>
 
         </div>
 
-      ) : (
+      </section>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {getCampaigns().map((campaign) => (
-            <CampaignCard
-              key={campaign._id}
-              campaign={campaign}
-              setDashboardView={setAdminView}
-              setFormMode={setFormMode}
-              setEditCampaign={setEditCampaign}
-              refreshCampaigns={fetchAllCampaigns}
-            />
-          ))}
+      {/* Campaign Section */}
+      <section className="min-h-[60vh]">
 
-        </div>
+        {loading ? (
 
-      )}
+          <div className="flex flex-col items-center justify-center py-20 text-center gap-4">
+
+            {/* Spinner */}
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-red-900"></div>
+
+            {/* Loading text */}
+            <p className="text-gray-500 text-sm sm:text-base font-medium">
+              Loading campaigns...
+            </p>
+
+          </div>
+
+        ) : getCampaigns().length === 0 ? (
+
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+
+            <div className="text-6xl mb-4">📢</div>
+
+            <h3 className="text-xl sm:text-2xl font-semibold text-red-900 mb-2">
+              No {status} campaigns found
+            </h3>
+
+            <p className="text-gray-500 text-sm max-w-md">
+              No {status === "all" ? "campaigns" : status + " campaigns"} available right now.
+            </p>
+
+            <button
+              onClick={() => {
+                setLoading(true);
+                fetchAllCampaigns();
+              }}
+              className="mt-6 px-6 py-2.5 bg-red-900 text-white rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
+            >
+              Refresh Campaigns
+            </button>
+
+          </div>
+
+        ) : (
+
+          <div
+            className="
+            grid gap-6
+            grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-3
+          "
+          >
+
+            {getCampaigns().map((campaign) => (
+              <CampaignCard
+                key={campaign._id}
+                campaign={campaign}
+                setDashboardView={setAdminView}
+                setFormMode={setFormMode}
+                setEditCampaign={setEditCampaign}
+                refreshCampaigns={fetchAllCampaigns}
+              />
+            ))}
+
+          </div>
+
+        )}
+
+      </section>
 
     </div>
 

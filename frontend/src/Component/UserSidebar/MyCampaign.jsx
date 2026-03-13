@@ -70,11 +70,12 @@ return (
       <section className="text-center sm:text-left">
 
         <h2 className="text-xl sm:text-2xl font-bold text-red-900">
-          Manage Campaigns
+          My Campaigns
         </h2>
 
         <p className="text-gray-500 text-sm sm:text-base mt-1 max-w-2xl">
-          Review, approve, or reject campaigns and monitor their funding progress.
+          Manage your campaigns by status. Track pending approvals, funded
+          projects, and more.
         </p>
 
       </section>
@@ -88,10 +89,11 @@ return (
           <button
             onClick={() => setStatus("all")}
             className={`px-4 py-2 rounded-full text-sm font-medium transition
-            ${status === "all"
+            ${
+              status === "all"
                 ? "bg-red-900 text-white"
                 : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
-              }`}
+            }`}
           >
             All
           </button>
@@ -99,10 +101,11 @@ return (
           <button
             onClick={() => setStatus("pending")}
             className={`px-4 py-2 rounded-full text-sm font-medium transition
-            ${status === "pending"
+            ${
+              status === "pending"
                 ? "bg-yellow-500 text-white"
                 : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
-              }`}
+            }`}
           >
             Pending
           </button>
@@ -110,10 +113,11 @@ return (
           <button
             onClick={() => setStatus("approved")}
             className={`px-4 py-2 rounded-full text-sm font-medium transition
-            ${status === "approved"
+            ${
+              status === "approved"
                 ? "bg-green-600 text-white"
                 : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
-              }`}
+            }`}
           >
             Approved
           </button>
@@ -121,10 +125,11 @@ return (
           <button
             onClick={() => setStatus("rejected")}
             className={`px-4 py-2 rounded-full text-sm font-medium transition
-            ${status === "rejected"
+            ${
+              status === "rejected"
                 ? "bg-red-500 text-white"
                 : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
-              }`}
+            }`}
           >
             Rejected
           </button>
@@ -132,10 +137,11 @@ return (
           <button
             onClick={() => setStatus("funded")}
             className={`px-4 py-2 rounded-full text-sm font-medium transition
-            ${status === "funded"
+            ${
+              status === "funded"
                 ? "bg-green-700 text-white"
                 : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
-              }`}
+            }`}
           >
             Funded
           </button>
@@ -150,13 +156,9 @@ return (
 
         {loading ? (
 
-          <div className="flex flex-col items-center justify-center py-20 text-center gap-4">
+          <div className="flex items-center justify-center h-60">
 
             <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-red-900"></div>
-
-            <p className="text-gray-500 text-sm sm:text-base font-medium">
-              Loading campaigns...
-            </p>
 
           </div>
 
@@ -171,14 +173,14 @@ return (
             </h3>
 
             <p className="text-gray-500 text-sm max-w-md">
-              There are currently no{" "}
-              {status === "all" ? "campaigns" : status + " campaigns"} available.
+              You haven't created any{" "}
+              {status === "all" ? "campaigns" : status + " campaigns"} yet.
             </p>
 
             <button
               onClick={() => {
                 setLoading(true);
-                fetchAllCampaigns();
+                fetchCampaigns();
               }}
               className="mt-6 px-6 py-2.5 bg-red-900 text-white rounded-lg hover:bg-red-800 transition shadow-sm font-medium"
             >
@@ -202,10 +204,11 @@ return (
               <CampaignCard
                 key={campaign._id}
                 campaign={campaign}
-                setDashboardView={setAdminView}
+                isAdmin={false}
+                setDashboardView={setView}
                 setFormMode={setFormMode}
                 setEditCampaign={setEditCampaign}
-                refreshCampaigns={fetchAllCampaigns}
+                refreshCampaigns={fetchCampaigns}
               />
             ))}
 
