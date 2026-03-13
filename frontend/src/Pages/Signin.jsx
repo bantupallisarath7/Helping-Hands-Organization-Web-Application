@@ -72,77 +72,51 @@ const Signin = ({ setView, onLogin }) => {
   };
 
 return (
-  <div className="flex-1 overflow-y-auto bg-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
+  <div className="flex-1 overflow-y-auto bg-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
 
-    <div className="w-full max-w-md bg-white rounded-xl shadow-sm hover:shadow-md transition p-8 sm:p-10 space-y-6">
+    <div className="w-full max-w-md bg-white rounded-xl shadow-sm hover:shadow-md transition p-6 sm:p-10 space-y-6">
 
       {/* Title */}
       <div className="text-center">
 
-        <h2 className="text-2xl font-bold text-red-900">
+        <h2 className="text-xl sm:text-2xl font-bold text-red-900">
           Helping Hands
         </h2>
 
-        <p className="text-gray-500 text-sm mt-1 max-w-xs mx-auto">
+        <p className="text-gray-500 text-sm mt-1">
           Sign in to continue
         </p>
 
       </div>
 
-
       <form onSubmit={submitHandler} className="space-y-5">
 
         {/* Email */}
-        <div>
-          <input
-            type="email"
-            value={formFields.email}
-            placeholder="Enter your email"
-            onChange={(e) =>
-              setFormFields({ ...formFields, email: e.target.value })
-            }
-            className="
-              w-full px-4 py-2.5
-              border border-gray-200
-              rounded-lg
-              text-sm
-              focus:outline-none
-              focus:ring-2 focus:ring-red-900/20
-              focus:border-red-900
-              transition
-            "
-          />
-        </div>
-
+        <input
+          type="email"
+          value={formFields.email}
+          placeholder="Enter your email"
+          onChange={(e) =>
+            setFormFields({ ...formFields, email: e.target.value })
+          }
+          className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-900/20 focus:border-red-900 transition"
+        />
 
         {/* Password */}
-        <div>
-          <input
-            type="password"
-            value={formFields.password}
-            placeholder="Enter your password"
-            onChange={(e) =>
-              setFormFields({ ...formFields, password: e.target.value })
-            }
-            className="
-              w-full px-4 py-2.5
-              border border-gray-200
-              rounded-lg
-              text-sm
-              focus:outline-none
-              focus:ring-2 focus:ring-red-900/20
-              focus:border-red-900
-              transition
-            "
-          />
-        </div>
+        <input
+          type="password"
+          value={formFields.password}
+          placeholder="Enter your password"
+          onChange={(e) =>
+            setFormFields({ ...formFields, password: e.target.value })
+          }
+          className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-900/20 focus:border-red-900 transition"
+        />
 
+        {/* Role */}
+        <div className="flex justify-center gap-8 pt-1">
 
-        {/* Role Selection */}
-        <div className="flex justify-center gap-10 pt-2">
-
-          <label className="flex items-center gap-2 cursor-pointer text-sm">
-
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
             <input
               type="radio"
               name="role"
@@ -153,16 +127,10 @@ return (
               }
               className="accent-red-900"
             />
-
-            <span className="text-gray-700 font-medium">
-              User
-            </span>
-
+            <span className="text-gray-700 font-medium">User</span>
           </label>
 
-
-          <label className="flex items-center gap-2 cursor-pointer text-sm">
-
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
             <input
               type="radio"
               name="role"
@@ -173,48 +141,28 @@ return (
               }
               className="accent-red-900"
             />
-
-            <span className="text-gray-700 font-medium">
-              Admin
-            </span>
-
+            <span className="text-gray-700 font-medium">Admin</span>
           </label>
 
         </div>
 
-
-        {/* Error */}
         {error && (
           <p className="text-sm text-red-600 text-center">
             {error}
           </p>
         )}
 
-
         {/* Button */}
         <button
           type="submit"
           disabled={loading}
-          className="
-            w-full
-            bg-red-900 text-white
-            px-6 py-2.5
-            rounded-lg
-            font-medium
-            hover:bg-red-800
-            transition
-            shadow-sm
-          "
+          className="w-full bg-red-900 text-white py-2 rounded-lg font-medium hover:bg-red-800 transition shadow-sm"
         >
           {loading ? "Signing in..." : "Sign In"}
         </button>
 
-
-        {/* Signup Link */}
         <p className="text-sm text-center text-gray-600">
-
           Not registered yet?{" "}
-
           <button
             type="button"
             onClick={() => setView("signup")}
@@ -222,7 +170,6 @@ return (
           >
             Create an account
           </button>
-
         </p>
 
       </form>
