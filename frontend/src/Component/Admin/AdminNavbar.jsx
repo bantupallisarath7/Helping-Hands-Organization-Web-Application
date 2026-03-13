@@ -37,11 +37,11 @@ return (
     {/* Left Section */}
     <div className="flex items-center space-x-3">
 
-      {/* Sidebar button (same style as user navbar) */}
+      {/* Sidebar button */}
       <button
         title="Admin menu"
         onClick={toggleSidebar}
-        className="text-2xl text-gray-700 hover:text-red-900"
+        className="text-2xl text-gray-700 hover:text-red-900 transition-colors"
       >
         <MdMenu />
       </button>
@@ -71,15 +71,18 @@ return (
 
     </div>
 
-    {/* Desktop Profile (same structure as user navbar) */}
-    <div className="hidden lg:flex items-center">
+    {/* Desktop Profile */}
+    <div className="hidden lg:flex items-center text-gray-700 font-medium">
+
       <div
         onClick={() => setAdminView("admin-profile")}
         className="cursor-pointer"
       >
         {userData && <ProfileInfo userInfo={userData} />}
       </div>
+
     </div>
+
   </nav>
 );
 };
