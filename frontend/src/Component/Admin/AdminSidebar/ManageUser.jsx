@@ -5,9 +5,11 @@ import { toast } from "react-toastify";
 
 const ManageUsers = ({ setAdminView, setSelectedUserId }) => {
   const [allUsers, setAllUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchAllUser = async () => {
     try {
+      setLoading(true);
       const res = await axios.get("https://api-hho.onrender.com/admin/user/all", { withCredentials: true });
       if (res.data.success === false) {
         toast.error(res.data.message);
@@ -17,6 +19,8 @@ const ManageUsers = ({ setAdminView, setSelectedUserId }) => {
     } catch (error) {
       const errorMsg = error.response?.data?.message || error.message || "Something went wrong";
       toast.error(errorMsg);
+    } finally {
+      setLoading(false);
     }
   }
 
