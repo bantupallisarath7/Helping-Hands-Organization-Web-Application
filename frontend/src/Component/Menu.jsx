@@ -71,9 +71,8 @@ const Menu = ({ setView, activeView, setFormMode, setEditCampaign }) => {
 
           <button
             onClick={() => setView("mydonations")}
-            className={`${menuItem} ${
-              activeView === "mydonations" && activeItem
-            }`}
+            className={`${menuItem} ${activeView === "mydonations" && activeItem
+              }`}
           >
             <MdFavorite className="text-lg" />
             My Donations
@@ -81,9 +80,8 @@ const Menu = ({ setView, activeView, setFormMode, setEditCampaign }) => {
 
           <button
             onClick={() => setView("mycampaigns")}
-            className={`${menuItem} ${
-              activeView === "mycampaigns" && activeItem
-            }`}
+            className={`${menuItem} ${activeView === "mycampaigns" && activeItem
+              }`}
           >
             <MdCampaign className="text-lg" />
             My Campaigns
@@ -95,9 +93,8 @@ const Menu = ({ setView, activeView, setFormMode, setEditCampaign }) => {
               setEditCampaign(null);
               setView("campaignform");
             }}
-            className={`${menuItem} ${
-              activeView === "campaignform" && activeItem
-            }`}
+            className={`${menuItem} ${activeView === "campaignform" && activeItem
+              }`}
           >
             <MdAssignment className="text-lg" />
             Campaign Form
@@ -105,9 +102,8 @@ const Menu = ({ setView, activeView, setFormMode, setEditCampaign }) => {
 
           <button
             onClick={() => setView("donationreceipts")}
-            className={`${menuItem} ${
-              activeView === "donationreceipts" && activeItem
-            }`}
+            className={`${menuItem} ${activeView === "donationreceipts" && activeItem
+              }`}
           >
             <FaReceipt className="text-lg" />
             Donation Receipts
@@ -115,9 +111,8 @@ const Menu = ({ setView, activeView, setFormMode, setEditCampaign }) => {
 
           <button
             onClick={() => setView("profile")}
-            className={`${menuItem} ${
-              activeView === "profile" && activeItem
-            }`}
+            className={`${menuItem} ${activeView === "profile" && activeItem
+              }`}
           >
             <MdPerson className="text-lg" />
             Profile
@@ -141,11 +136,11 @@ const Menu = ({ setView, activeView, setFormMode, setEditCampaign }) => {
       {signoutLoading && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
 
-          <div className="bg-white rounded-xl shadow-lg px-8 py-6 flex flex-col items-center gap-4">
+          <div className="bg-white rounded-xl shadow-lg px-8 py-6 flex flex-col items-center justify-center gap-4">
 
-            <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-red-900"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-red-900"></div>
 
-            <p className="text-gray-700 font-medium">
+            <p className="text-gray-500 text-sm sm:text-base font-medium">
               Signing you out...
             </p>
 
