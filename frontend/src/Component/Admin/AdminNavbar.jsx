@@ -31,18 +31,18 @@ const AdminNavbar = ({ setAdminView, toggleSidebar, refreshProfile, setRefreshPr
     getUserInfo();
   }, [refreshProfile]);
 return (
-  <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg px-4 md:px-6 py-3 flex justify-between items-center">
+  <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md px-4 md:px-6 py-3 flex justify-between items-center">
 
     {/* Left Section */}
     <div className="flex items-center space-x-3">
 
-      {/* Sidebar Toggle */}
+      {/* Sidebar button (same style as user navbar) */}
       <button
-        onClick={toggleSidebar}
         title="Admin menu"
-        className="text-red-900 hover:bg-red-50 p-2 rounded-lg transition"
+        onClick={toggleSidebar}
+        className="text-2xl text-gray-700 hover:text-red-900"
       >
-        <MdMenu size={24} />
+        <MdMenu />
       </button>
 
       {/* Logo */}
@@ -70,12 +70,48 @@ return (
 
     </div>
 
-    {/* Right Section */}
+    {/* Desktop Profile (same structure as user navbar) */}
+    <div className="hidden lg:flex items-center">
+      <div
+        onClick={() => setAdminView("admin-profile")}
+        className="cursor-pointer"
+      >
+        {userData && <ProfileInfo userInfo={userData} />}
+      </div>
+    </div>
+
+    {/* Mobile + Tablet Profile Dropdown */}
     <div
-      onClick={() => setAdminView("admin-profile")}
-      className="flex items-center cursor-pointer"
+      className="lg:hidden cursor-pointer relative"
+      onClick={() => setMobileMenu(!mobileMenu)}
     >
       {userData && <ProfileInfo userInfo={userData} />}
+
+      {mobileMenu && (
+        <div className="absolute top-16 right-4 w-48 bg-white shadow-lg rounded-xl flex flex-col py-2">
+
+          <button
+            onClick={() => {
+              setAdminView("admin-home");
+              setMobileMenu(false);
+            }}
+            className="px-4 py-2 text-left hover:bg-gray-100"
+          >
+            Dashboard
+          </button>
+
+          <button
+            onClick={() => {
+              setAdminView("admin-profile");
+              setMobileMenu(false);
+            }}
+            className="px-4 py-2 text-left hover:bg-gray-100"
+          >
+            Profile
+          </button>
+
+        </div>
+      )}
     </div>
 
   </nav>
