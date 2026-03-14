@@ -124,18 +124,6 @@ return (
             Rejected
           </button>
 
-          <button
-            onClick={() => setStatus("funded")}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition
-            ${
-              status === "funded"
-                ? "bg-green-700 text-white"
-                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
-            }`}
-          >
-            Funded
-          </button>
-
         </div>
       </section>
 
