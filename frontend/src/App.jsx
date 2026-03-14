@@ -43,6 +43,24 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const token = Cookies.get("access_token");
+    if (!token) return;
+    const decoded = jwtDecode(token);
+    const expiryTime = decoded.exp * 1000;
+    const timeUntilExpiry = expiryTime - Date.now();
+    if (timeUntilExpiry <= 0) {
+      dispatch(signOutSuccess());
+      setView("signin");
+    } else {
+      const timer = setTimeout(() => {
+        dispatch(signOutSuccess());
+        setView("signin");
+      }, timeUntilExpiry);
+
+      return () => clearTimeout(timer);
+    }
+  }, [dispatch]);
 
   const renderView = () => {
     switch (view) {
@@ -66,39 +84,39 @@ const App = () => {
         return <LandingHome setView={setView} />;
     }
   };
-return (
-  <>
-    {loading && <Loader />}
-    {!loading && (
-      <div className="flex flex-col min-h-screen">
-        {isLoggedIn ? (
-          currentUser.role === "admin" ? (
-            <AdminDashboard />
+  return (
+    <>
+      {loading && <Loader />}
+      {!loading && (
+        <div className="flex flex-col min-h-screen">
+          {isLoggedIn ? (
+            currentUser.role === "admin" ? (
+              <AdminDashboard />
+            ) : (
+              <Dashboard />
+            )
           ) : (
-            <Dashboard />
-          )
-        ) : (
-          <>
-            {/* Navbar */}
-            <PublicNavbar setView={setView} activeView={view} />
+            <>
+              {/* Navbar */}
+              <PublicNavbar setView={setView} activeView={view} />
 
-            {/* Main content fills remaining space */}
-            <main className="flex-1 flex items-center justify-center px-6 pt-20">
-              {renderView()}
-            </main>
-          </>
-        )}
+              {/* Main content fills remaining space */}
+              <main className="flex-1 flex items-center justify-center px-6 pt-20">
+                {renderView()}
+              </main>
+            </>
+          )}
 
-        {/* Toast notifications */}
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          hideProgressBar={false}
-        />
-      </div>
-    )}
-  </>
-);
+          {/* Toast notifications */}
+          <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            hideProgressBar={false}
+          />
+        </div>
+      )}
+    </>
+  );
 };
 
 export default App;

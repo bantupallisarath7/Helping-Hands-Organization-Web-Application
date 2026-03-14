@@ -22,7 +22,7 @@ const getUser = async (req, res, next) => {
             return next(errorHandler(401, `Access denied: Change the role`))
         }
 
-        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY,{ expiresIn: "2h" });
+        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY,{ expiresIn: "1m" });
         res.cookie("access_token", token, {
             httpOnly: true,
             secure: true,
