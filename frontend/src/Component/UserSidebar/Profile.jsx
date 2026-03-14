@@ -13,7 +13,7 @@ const Profile = ({ userId, role, setRefreshProfile }) => {
   const [userData, setUserData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
-  const isAdmin = role === "admin" ? true : false
+  const isAdmin = role === "admin";
 
   const getUserInfo = async () => {
     try {
@@ -35,8 +35,10 @@ const Profile = ({ userId, role, setRefreshProfile }) => {
   };
 
   useEffect(() => {
-    getUserInfo();
-  }, []);
+    if (userIdToLoad) {
+      getUserInfo();
+    }
+  }, [userIdToLoad]);
 
   if (loading) {
     return (
@@ -94,7 +96,7 @@ const Profile = ({ userId, role, setRefreshProfile }) => {
                     url={userData.profilePhotoUrl}
                     refreshProfile={getUserInfo}
                     setRefreshProfile={setRefreshProfile}
-                    userId={userId}
+                    userId={userIdToLoad}
                   />
 
                   <h3 className="text-lg sm:text-xl font-bold">
