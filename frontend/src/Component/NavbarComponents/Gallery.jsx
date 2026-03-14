@@ -164,7 +164,7 @@ return (
               >
 
                 <img
-                  src={`https://api-hho.onrender.com${image.imageUrl}`}
+                  src={image.imageUrl}
                   alt={`Gallery ${index + 1}`}
                   className="w-full h-40 sm:h-44 md:h-48 object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
                   onClick={() => setSelectedIndex(index)}
@@ -231,7 +231,7 @@ return (
       >
 
         <img
-          src={`https://api-hho.onrender.com${images[selectedIndex].imageUrl}`}
+          src={images[selectedIndex].imageUrl}
           alt={`Gallery ${selectedIndex + 1}`}
           className="max-w-full max-h-[90vh] rounded-xl shadow-xl"
         />

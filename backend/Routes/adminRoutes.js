@@ -9,7 +9,7 @@ import updateEvent from "../Controllers/eventControllers/updateEvent.js";
 import getAllEvents from "../Controllers/eventControllers/getAllEvents.js";
 import autoUpdateEventStatuses from "../Controllers/eventControllers/autoUpdateEventStatuses.js";
 import updateEventStatuses from "../Controllers/adminController/updateEventStatuses.js";
-import upload from "../Middlewares/uploadStorage.js";
+import uploadGallery from "../Middlewares/uploadGallery.js";
 import uploadController from "../Controllers/galleryController/uploadController.js";
 import getController from "../Controllers/galleryController/getController.js";
 import deleteController from "../Controllers/galleryController/deleteController.js";
@@ -26,7 +26,7 @@ router.put("/event/update/:eventId", verifyToken, updateEvent);
 router.get("/event/all", getAllEvents);
 router.put("/event/autoupdate/all", autoUpdateEventStatuses)
 router.put("/event/update/status/:eventId", verifyToken, updateEventStatuses)
-router.post('/gallery/upload', upload.single("image"), uploadController)
+router.post('/gallery/upload', uploadGallery.single("image"), uploadController)
 router.get("/gallery/all", getController);
 router.delete('/gallery/delete/:id', deleteController)
 router.get("/top-donors", topDonors);
