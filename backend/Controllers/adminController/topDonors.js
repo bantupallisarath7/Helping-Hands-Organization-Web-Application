@@ -12,7 +12,7 @@ const topDonors = async (req, res, next) => {
 
     const formatted = topDonors.map((user) => ({
       name: user.fullName || "Anonymous",
-      photo: user.profilePhotoUrl ? `https://api-hho.onrender.com${user.profilePhotoUrl}` : null,
+      photo: user.profilePhotoUrl || null,
       amount: user.donatedAmount,
     }));
 
@@ -21,6 +21,7 @@ const topDonors = async (req, res, next) => {
       message: "Top donors successfully fetched",
       donors: formatted,
     });
+
   } catch (error) {
     next(errorHandler(500, error.message || "Internal Server Error"));
   }

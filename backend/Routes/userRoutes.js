@@ -9,7 +9,7 @@ import deleteUser from "../Controllers/userControllers/deleteUser.js";
 import updateUserIsActive from "../Controllers/userControllers/updateUserIsActive.js";
 import updateProfilePhoto from "../Controllers/userControllers/updateProfilePhoto.js";
 import deleteProfilePhoto from "../Controllers/userControllers/deleteProfilePhoto.js";
-import upload from "../Middlewares/uploadProfileStorage.js";
+import uploadProfile from "../Middlewares/uploadProfile.js";
 
 const router = express.Router();
 
@@ -20,7 +20,7 @@ router.post("/signout", signOut);
 router.get("/get/:userId", getUserById);
 router.delete("/delete/:userId", verifyToken, deleteUser);
 router.put("/update/isactive/:userId", verifyToken, updateUserIsActive);
-router.post("/upload/profile-photo/:userId", verifyToken, upload.single("photo"), updateProfilePhoto);
+router.post("/upload/profile-photo/:userId", verifyToken, uploadProfile.single("photo"), updateProfilePhoto);
 router.delete("/delete/profile-photo/:userId", verifyToken, deleteProfilePhoto);
 
 export default router;

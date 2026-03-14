@@ -19,7 +19,8 @@ const ProfilePhoto = ({ url, refreshProfile, setRefreshProfile, userId }) => {
 
     try {
       const res = await axios.post(`https://api-hho.onrender.com/auth/upload/profile-photo/${userId}`, formData, {
-        withCredentials: true
+        withCredentials: true,
+        headers: { "Content-Type": "multipart/form-data" }
       });
 
       if (res.data.success === false) {
@@ -54,7 +55,7 @@ const ProfilePhoto = ({ url, refreshProfile, setRefreshProfile, userId }) => {
       <div className="w-full h-full rounded-full bg-white border-2 border-red-900 flex items-center justify-center overflow-hidden">
         {url ? (
           <img
-            src={`https://api-hho.onrender.com${url}`}
+            src={url}
             alt="Profile"
             className="w-full h-full object-cover rounded-full"
           />
