@@ -43,25 +43,6 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const token = Cookies.get("access_token");
-    if (!token) return;
-    const decoded = jwtDecode(token);
-    const expiryTime = decoded.exp * 1000;
-    const timeUntilExpiry = expiryTime - Date.now();
-    if (timeUntilExpiry <= 0) {
-      dispatch(signOutSuccess());
-      setView("signin");
-    } else {
-      const timer = setTimeout(() => {
-        dispatch(signOutSuccess());
-        setView("signin");
-      }, timeUntilExpiry);
-
-      return () => clearTimeout(timer);
-    }
-  }, [dispatch]);
-
   const renderView = () => {
     switch (view) {
       case "home":
