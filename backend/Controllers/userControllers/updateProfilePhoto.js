@@ -10,7 +10,7 @@ const updateProfilePhoto = async (req, res, next) => {
     }
 
     const imageUrl = req.file.path; 
-
+    
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { profilePhotoUrl: imageUrl },
