@@ -7,9 +7,8 @@ const uploadController = async (req, res, next) => {
       return next(errorHandler(400, "No image uploaded"));
     }
 
-    // Cloudinary gives you a hosted URL here
     const imageUrl = req.file.path;      
-    const publicId = req.file.filename;  // useful for deletion later
+    const publicId = req.file.filename; 
 
     const newImage = new Gallery({ imageUrl, publicId });
     await newImage.save();

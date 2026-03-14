@@ -3,18 +3,21 @@ import errorHandler from "../../ErrorHandlers/errorHandler.js";
 
 const updateProfilePhoto = async (req, res, next) => {
   try {
-    console.log("Controller hit");
-console.log("File:", req.file);
     const { userId } = req.params;
 
     if (!req.file) {
       return next(errorHandler(400, "No image uploaded"));
     }
 
-    const imageUrl = req.file.path; 
+    const imageUrl = req.file.path;       
+    const publicId = req.file.filename;   
+
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { profilePhotoUrl: imageUrl },
+      { 
+        profilePhotoUrl: imageUrl,
+        profilePhotoPublicId: publicId 
+      },
       { new: true }
     );
 
