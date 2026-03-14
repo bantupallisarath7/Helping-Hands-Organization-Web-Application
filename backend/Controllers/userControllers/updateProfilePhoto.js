@@ -3,6 +3,8 @@ import errorHandler from "../../ErrorHandlers/errorHandler.js";
 
 const updateProfilePhoto = async (req, res, next) => {
   try {
+    console.log("Controller hit");
+console.log("File:", req.file);
     const { userId } = req.params;
 
     if (!req.file) {
@@ -10,7 +12,6 @@ const updateProfilePhoto = async (req, res, next) => {
     }
 
     const imageUrl = req.file.path; 
-    console.log(req.file);
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { profilePhotoUrl: imageUrl },
