@@ -30,7 +30,6 @@ app.use("/receipt", donationReceiptRoutes)
 app.use("/campaign", campaignRoutes)
 app.use("/admin", adminRoutes)
 app.use("/feedback", feedbackRoutes)
-app.use("/uploads", express.static("uploads"));
 
 
 
