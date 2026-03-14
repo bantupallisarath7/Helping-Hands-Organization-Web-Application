@@ -72,7 +72,7 @@ return (
               onClick={() =>
                 isAdmin
                   ? toast.info("Campaign creation is not allowed from the admin panel")
-                  : toast.info("Please sign in to create a new campaign")
+                  : setView("signin")
               }
               className="bg-red-900 text-white px-8 py-3 rounded-lg font-semibold shadow-sm hover:bg-red-800 transition"
             >
