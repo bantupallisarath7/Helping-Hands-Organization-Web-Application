@@ -1,7 +1,7 @@
 import errorHandler from "../../ErrorHandlers/errorHandler.js";
 import User from "../../Models/User.js"
 const updateUser = async (req, res, next) => {
-  const { userId, fullName, email, phoneNumber, dob, isHHOMember, profilePhotoUrl } = req.body;
+  const { userId, fullName,phoneNumber, dob, isHHOMember, profilePhotoUrl } = req.body;
 
   try {
     const user = await User.findById(userId).select("-password");
@@ -13,12 +13,11 @@ const updateUser = async (req, res, next) => {
       return next(errorHandler(403, "Account is inactive"));
     }
 
-    if (!fullName && !email && !phoneNumber && !dob && isHHOMember === undefined && !profilePhotoUrl) {
+    if (!fullName && !phoneNumber && !dob && isHHOMember === undefined && !profilePhotoUrl) {
       return next(errorHandler(400, "No changes found"));
     }
 
     if (fullName) user.fullName = fullName;
-    if (email) user.email = email;
     if (phoneNumber) user.phoneNumber = phoneNumber;
     if (dob) user.dob = dob;
     if (isHHOMember !== undefined) user.isHHOMember = isHHOMember;

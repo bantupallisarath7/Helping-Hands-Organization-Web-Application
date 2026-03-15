@@ -6,16 +6,16 @@ import { toast } from "react-toastify";
 const EditProfileForm = ({ userData, onClose, onUpdate, isAdmin }) => {
   const [formData, setFormData] = useState({
     fullName: userData.fullName || "",
-    email: userData.email || "",
     phoneNumber: userData.phoneNumber || "",
     dob: userData.dob ? dayjs(userData.dob).format("YYYY-MM-DD") : "",
-    isHHOMember: userData.isHHOMember || false,
-    donatedAmount: userData.donatedAmount || 0
+    isHHOMember: userData.isHHOMember || false
   });
+
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
     setFormData({
       ...formData,
       [name]: type === "checkbox" ? checked : value
@@ -24,8 +24,10 @@ const EditProfileForm = ({ userData, onClose, onUpdate, isAdmin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       setLoading(true);
+
       const res = await axios.put(
         "https://api-hho.onrender.com/auth/update/profile",
         {
@@ -34,14 +36,18 @@ const EditProfileForm = ({ userData, onClose, onUpdate, isAdmin }) => {
         },
         { withCredentials: true }
       );
+
       if (res.data.success === false) {
-        toast.error(res.data.message)
+        toast.error(res.data.message);
+        return;
       }
-      toast.success(res.data.message)
+
+      toast.success(res.data.message);
       onUpdate(res.data.user);
       onClose();
+
     } catch (err) {
-      toast.error(err.message)
+      toast.error(err.response?.data?.message || err.message);
     } finally {
       setLoading(false);
     }
@@ -49,8 +55,11 @@ const EditProfileForm = ({ userData, onClose, onUpdate, isAdmin }) => {
 
   return (
     <form onSubmit={handleSubmit} className="px-8 py-6 space-y-4 text-sm text-gray-900">
+      
       <h3 className="text-lg font-semibold mb-2">Edit Profile</h3>
+
       <div className="grid grid-cols-1 gap-4">
+
         <input
           name="fullName"
           type="text"
@@ -59,14 +68,7 @@ const EditProfileForm = ({ userData, onClose, onUpdate, isAdmin }) => {
           placeholder="Full Name"
           className="border p-2 rounded focus:ring-1 focus:ring-red-900"
         />
-        <input
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email"
-          className="border p-2 rounded focus:ring-1 focus:ring-red-900"
-        />
+
         <input
           name="phoneNumber"
           type="text"
@@ -75,6 +77,7 @@ const EditProfileForm = ({ userData, onClose, onUpdate, isAdmin }) => {
           placeholder="Phone Number"
           className="border p-2 rounded focus:ring-1 focus:ring-red-900"
         />
+
         <input
           name="dob"
           type="date"
@@ -83,21 +86,22 @@ const EditProfileForm = ({ userData, onClose, onUpdate, isAdmin }) => {
           className="border p-2 rounded focus:ring-1 focus:ring-red-900"
         />
 
-        {
-          isAdmin && (
-            <label className="flex items-center space-x-2">
-              <input
-                name="isHHOMember"
-                type="checkbox"
-                checked={formData.isHHOMember}
-                onChange={handleChange}
-              />
-              <span>Are you an HHO Member?</span>
-            </label>
-          )
-        }
+        {isAdmin && (
+          <label className="flex items-center space-x-2">
+            <input
+              name="isHHOMember"
+              type="checkbox"
+              checked={formData.isHHOMember}
+              onChange={handleChange}
+            />
+            <span>Are you an HHO Member?</span>
+          </label>
+        )}
+
       </div>
+
       <div className="mt-4 flex justify-end gap-2">
+
         <button
           type="button"
           onClick={onClose}
@@ -105,6 +109,7 @@ const EditProfileForm = ({ userData, onClose, onUpdate, isAdmin }) => {
         >
           Cancel
         </button>
+
         <button
           type="submit"
           disabled={loading}
@@ -112,7 +117,9 @@ const EditProfileForm = ({ userData, onClose, onUpdate, isAdmin }) => {
         >
           {loading ? "Updating..." : "Save Changes"}
         </button>
+
       </div>
+
     </form>
   );
 };
